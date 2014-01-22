@@ -5,13 +5,18 @@
  * Released under MIT License in Germany (LICENSE-Kobold2D.txt).
  */
 
+#import <SpriteKit/SpriteKit.h>
 #import "kobold2d.h"
 
-@interface HelloWorldLayer : CCLayer
+
+@interface infiniteMode : CCLayer
 {
+    int newScore;
+    CCLabelTTF * scoreLabel;
     CCAction *spinningCoin;
     NSMutableArray* spinningFrames;
     
 }
+-(void) updateScore:(int) newScore;
 
 @end
