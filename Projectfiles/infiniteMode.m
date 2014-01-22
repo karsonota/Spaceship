@@ -8,6 +8,8 @@
 #import "infiniteMode.h"
 #include <stdlib.h>
 #include <math.h>
+#import "SimpleAudioEngine.h"
+
 
 
 //DEFINE OBJECTS
@@ -62,6 +64,10 @@ CCSprite * fire5;
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
         scoreLabel.position = ccp(220, 450); //Middle of the screen...
         [self addChild:scoreLabel z:1];
+        
+        //LOAD SOUND
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"DeathFlash.wav"];
+
         
         //SCHEDULE UPDATE
         [self scheduleUpdate];
@@ -236,6 +242,8 @@ CCSprite * fire5;
                     [self removeChild:asteroidHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+
                 }
             }
         }

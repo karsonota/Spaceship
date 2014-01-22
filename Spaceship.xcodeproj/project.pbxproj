@@ -19,6 +19,7 @@
 		0717CC7318905389006A2648 /* Level3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC7218905389006A2648 /* Level3.m */; };
 		0717CC7618905396006A2648 /* Level4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC7518905396006A2648 /* Level4.m */; };
 		0717CC79189053A5006A2648 /* Level5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC78189053A5006A2648 /* Level5.m */; };
+		0717CC7C18905A1C006A2648 /* DeathFlash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0717CC7B18905A1C006A2648 /* DeathFlash.wav */; };
 		0756313718871BDD0070C5A9 /* asteroid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0756313618871BDD0070C5A9 /* asteroid1.png */; };
 		07A4F3B318847587002276D8 /* spinningCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A4F3B218847587002276D8 /* spinningCoin.png */; };
 		07A4F3B518847591002276D8 /* spinningCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07A4F3B418847591002276D8 /* spinningCoin.plist */; };
@@ -82,6 +83,7 @@
 		0717CC7518905396006A2648 /* Level4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level4.m; sourceTree = "<group>"; };
 		0717CC77189053A5006A2648 /* Level5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level5.h; sourceTree = "<group>"; };
 		0717CC78189053A5006A2648 /* Level5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level5.m; sourceTree = "<group>"; };
+		0717CC7B18905A1C006A2648 /* DeathFlash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DeathFlash.wav; sourceTree = "<group>"; };
 		0756313618871BDD0070C5A9 /* asteroid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid1.png; sourceTree = "<group>"; };
 		07A4F3B218847587002276D8 /* spinningCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinningCoin.png; sourceTree = "<group>"; };
 		07A4F3B418847591002276D8 /* spinningCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spinningCoin.plist; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				0756313618871BDD0070C5A9 /* asteroid1.png */,
 				0717CC64188867F6006A2648 /* burning_star_v1.plist */,
 				07093EC618806DB4007B3705 /* ship-hd.png */,
+				0717CC7B18905A1C006A2648 /* DeathFlash.wav */,
 				07093EC818806F0C007B3705 /* darkship.png */,
 				07093EC418806C8E007B3705 /* ship.png */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
@@ -388,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0717CC7C18905A1C006A2648 /* DeathFlash.wav in Resources */,
 				0756313718871BDD0070C5A9 /* asteroid1.png in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
