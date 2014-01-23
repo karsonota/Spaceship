@@ -42,6 +42,10 @@ CCSprite * fire5;
 {
 	if ((self = [super init]))
 	{
+        //GET SCREEN DIMENSIONS
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
         
         //INITIALIZE THE ARRAY TO KEEP TRACK OF COINS AND ASTEROIDS
         coins = [[NSMutableArray alloc] init];
@@ -54,7 +58,7 @@ CCSprite * fire5;
         
         //CREATE SHIP
         ship = [CCSprite spriteWithFile:@"darkship.png"];
-        ship.position = ccp(150, 150);
+        ship.position = ccp(screenWidth/2, screenHeight/2);
         [self addChild:ship];
         
         //KEEP TRACK OF SCORE

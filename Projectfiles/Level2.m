@@ -73,33 +73,36 @@ CCSprite * fire5;
 -(void) createCoins
 {
     int timer = arc4random() % 1000;//makes coins appear randomly
-    if (timer < 20)
+    if ([coins count] < 6)
     {
-        int xcoin = arc4random() % 320;
-        int ycoin = arc4random() % 480;
-        
-        //MAKE THE COINS SPIN
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spinningCoin.plist"];
-        CCSpriteBatchNode * spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spinningCoin.png"];
-        [self addChild:spriteSheet];
-        spinningFrames = [NSMutableArray array];
-        for(int i = 1; i <= 9; ++i)
+        if (timer < 20)
         {
-            [spinningFrames addObject:
-             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"goldCoin%d.png", i]]];
+            int xcoin = arc4random() % 320;
+            int ycoin = arc4random() % 480;
+            
+            //MAKE THE COINS SPIN
+            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spinningCoin.plist"];
+            CCSpriteBatchNode * spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spinningCoin.png"];
+            [self addChild:spriteSheet];
+            spinningFrames = [NSMutableArray array];
+            for(int i = 1; i <= 9; ++i)
+            {
+                [spinningFrames addObject:
+                 [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"goldCoin%d.png", i]]];
+            }
+            
+            //CREATE SINGLE COIN
+            coin = [CCSprite spriteWithSpriteFrameName: @"goldCoin1.png"];
+            coin.anchorPoint = CGPointZero;
+            coin.position = CGPointMake(xcoin, ycoin);
+            CCAnimation * spinning = [CCAnimation animationWithFrames: spinningFrames delay:.1];
+            spinCoin = [CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:spinning restoreOriginalFrame:NO]];
+            [coin runAction: spinCoin];
+            //new CCaction here
+            [coin runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldCoins:)], nil]];
+            [self addChild:coin z:0];
+            [coins addObject:coin];//Array keeps track of coins
         }
-        
-        //CREATE SINGLE COIN
-        coin = [CCSprite spriteWithSpriteFrameName: @"goldCoin1.png"];
-        coin.anchorPoint = CGPointZero;
-        coin.position = CGPointMake(xcoin, ycoin);
-        CCAnimation * spinning = [CCAnimation animationWithFrames: spinningFrames delay:.1];
-        spinCoin = [CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:spinning restoreOriginalFrame:NO]];
-        [coin runAction: spinCoin];
-        //new CCaction here
-        [coin runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldCoins:)], nil]];
-        [self addChild:coin z:0];
-        [coins addObject:coin];//Array keeps track of coins
     }
 }
 

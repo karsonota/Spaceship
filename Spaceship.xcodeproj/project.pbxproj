@@ -21,6 +21,8 @@
 		0717CC79189053A5006A2648 /* Level5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC78189053A5006A2648 /* Level5.m */; };
 		0717CC7C18905A1C006A2648 /* DeathFlash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0717CC7B18905A1C006A2648 /* DeathFlash.wav */; };
 		0756313718871BDD0070C5A9 /* asteroid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0756313618871BDD0070C5A9 /* asteroid1.png */; };
+		079310011891A42D00EA1805 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 079310001891A42D00EA1805 /* Tutorial.m */; };
+		079310031891A5B700EA1805 /* fastForward.png in Resources */ = {isa = PBXBuildFile; fileRef = 079310021891A5B700EA1805 /* fastForward.png */; };
 		07A4F3B318847587002276D8 /* spinningCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A4F3B218847587002276D8 /* spinningCoin.png */; };
 		07A4F3B518847591002276D8 /* spinningCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07A4F3B418847591002276D8 /* spinningCoin.plist */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
@@ -85,6 +87,9 @@
 		0717CC78189053A5006A2648 /* Level5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level5.m; sourceTree = "<group>"; };
 		0717CC7B18905A1C006A2648 /* DeathFlash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DeathFlash.wav; sourceTree = "<group>"; };
 		0756313618871BDD0070C5A9 /* asteroid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid1.png; sourceTree = "<group>"; };
+		07930FFF1891A42D00EA1805 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
+		079310001891A42D00EA1805 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
+		079310021891A5B700EA1805 /* fastForward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastForward.png; sourceTree = "<group>"; };
 		07A4F3B218847587002276D8 /* spinningCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinningCoin.png; sourceTree = "<group>"; };
 		07A4F3B418847591002276D8 /* spinningCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spinningCoin.plist; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
@@ -272,9 +277,11 @@
 				0717CC7118905389006A2648 /* Level3.h */,
 				0717CC7218905389006A2648 /* Level3.m */,
 				0717CC7418905396006A2648 /* Level4.h */,
+				0717CC7518905396006A2648 /* Level4.m */,
 				0717CC77189053A5006A2648 /* Level5.h */,
 				0717CC78189053A5006A2648 /* Level5.m */,
-				0717CC7518905396006A2648 /* Level4.m */,
+				07930FFF1891A42D00EA1805 /* Tutorial.h */,
+				079310001891A42D00EA1805 /* Tutorial.m */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
@@ -289,6 +296,7 @@
 				0717CC69188D97D3006A2648 /* spaceBackground.png */,
 				07A4F3B218847587002276D8 /* spinningCoin.png */,
 				0756313618871BDD0070C5A9 /* asteroid1.png */,
+				079310021891A5B700EA1805 /* fastForward.png */,
 				0717CC64188867F6006A2648 /* burning_star_v1.plist */,
 				07093EC618806DB4007B3705 /* ship-hd.png */,
 				0717CC7B18905A1C006A2648 /* DeathFlash.wav */,
@@ -405,6 +413,7 @@
 				0717CC6A188D97D3006A2648 /* spaceBackground.png in Resources */,
 				0717CC65188867F6006A2648 /* burning_star_v1.plist in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
+				079310031891A5B700EA1805 /* fastForward.png in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
@@ -443,6 +452,7 @@
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				0717CC701890537D006A2648 /* Level2.m in Sources */,
+				079310011891A42D00EA1805 /* Tutorial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
