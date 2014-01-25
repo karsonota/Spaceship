@@ -21,19 +21,15 @@ CCSprite * asteroid;
 CCRepeatForever * spinCoin;
 NSMutableArray * coins;
 NSMutableArray * asteroids;
+NSMutableArray * fires;
 CCSprite * coinHelper;
 CCSprite * asteroidHelper;
+CCSprite * fireHelper;
 CCSprite * ast;
 CCSprite * ast1;
 CCSprite * ast2;
-CCSprite * ast3;
-CCSprite * ast4;
-CCSprite * ast5;
 CCSprite * fire1;
 CCSprite * fire2;
-CCSprite * fire3;
-CCSprite * fire4;
-CCSprite * fire5;
 int * coinCount;
 
 @interface Level1 (PrivateMethods)
@@ -52,6 +48,7 @@ int * coinCount;
         //INITIALIZE THE ARRAY TO KEEP TRACK OF COINS AND ASTEROIDS
         coins = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
+        fires = [[NSMutableArray alloc] init];
         
         //CREATE BACKDROP
         background = [CCSprite spriteWithFile:@"spaceBackground.png"];
@@ -67,13 +64,23 @@ int * coinCount;
         int coinCount = 0;
         
         //ASTEROID
-        fire = [CCParticleSystemQuad particleWithFile:@"burning_star_v1.plist"];
-        [self addChild:fire];
-        ast  = [CCSprite spriteWithFile: @"asteroid1.png"];
-        ast.position = ccp(100, 50);
-        [self addChild: ast];
-        [asteroids addObject:ast];
-        fire.position = ast.position;
+        fire1 = [CCParticleSystemQuad particleWithFile:@"burning_star_v1.plist"];
+        [self addChild:fire1];
+        ast1  = [CCSprite spriteWithFile: @"asteroid1.png"];
+        ast1.position = ccp(screenWidth/2, screenHeight/4);
+        [self addChild: ast1];
+        [asteroids addObject:ast1];
+        fire1.position = ast1.position;
+        [fires addObject:fire1];
+        
+        fire2 = [CCParticleSystemQuad particleWithFile:@"burning_star_v1.plist"];
+        [self addChild:fire2];
+        ast2  = [CCSprite spriteWithFile: @"asteroid1.png"];
+        ast2.position = ccp(screenWidth/2, 3 * screenHeight/4);
+        [self addChild: ast2];
+        [asteroids addObject:ast2];
+        fire2.position = ast2.position;
+        [fires addObject:fire2];
         
         //TEMPORARY MAKE POWERUP
         fastForward = [CCSprite spriteWithFile:@"fastForward.png"];
@@ -168,12 +175,13 @@ int * coinCount;
         {
             NSInteger first = i;
             asteroidHelper = [asteroids objectAtIndex: first];
+            fireHelper = [fires objectAtIndex:first];
             if (asteroidHelper.position.x < (ship.position.x + 40) && asteroidHelper.position.x > ship.position.x - 40)
             {
                 if (asteroidHelper.position.y < (ship.position.y + 60) && asteroidHelper.position.y > ship.position.y - 80)
                 {
                     [self removeChild:asteroidHelper cleanup:YES];
-                    [self removeChild:fire cleanup:YES];
+                    [self removeChild:fireHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
                 }
