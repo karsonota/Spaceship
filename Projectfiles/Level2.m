@@ -73,7 +73,7 @@ CCSprite * fire5;
 -(void) createCoins
 {
     int timer = arc4random() % 1000;//makes coins appear randomly
-    if ([coins count] < 6)
+    if ([coins count] < 5)
     {
         if (timer < 20)
         {
@@ -115,7 +115,7 @@ CCSprite * fire5;
 -(void) createAsteroids
 {
     
-    int timer = arc4random() % 1000;//makes coins appear randomly
+    int timer = arc4random() % 90000;//makes coins appear randomly
     
     if (timer < 10)
         
