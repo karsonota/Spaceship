@@ -12,6 +12,7 @@
 
 
 
+
 //DEFINE OBJECTS
 CCSprite * background;
 CCSprite * ship;
@@ -66,6 +67,9 @@ CCSprite * fire5;
         
         //KEEP TRACK OF SCORE
         newScore = 0;
+        
+        //MAKE ASTEROIDS MORE FREQUENT
+        timerHelper = 20000;
         
         //ADD THE SCORE LABEL
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
@@ -128,7 +132,7 @@ CCSprite * fire5;
 -(void) createAsteroids
 {
     
-    int timer = arc4random() % 10000;//makes coins appear randomly
+    int timer = arc4random() % timerHelper;//makes coins appear randomly
     
     if (timer < 10)
         
@@ -142,6 +146,7 @@ CCSprite * fire5;
         [asteroids addObject:ast1];
         ast1.position =ccp(ast1.position.x + 3, ast1.position.y + 3);
         fire1.position = ast1.position;
+        
 
     }
     
@@ -199,6 +204,13 @@ CCSprite * fire5;
         [asteroids addObject:ast5];
         ast5.position =ccp(ast5.position.x, ast5.position.y + 5);
         fire5.position = ast5.position;
+    }
+    if (timer < 50)
+    {
+        if (timerHelper < 150)
+        {
+            timerHelper -= 100;
+        }
     }
     
 }

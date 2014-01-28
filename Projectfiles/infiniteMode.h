@@ -12,6 +12,7 @@
 @interface infiniteMode : CCLayer
 {
     int newScore;
+    int timerHelper;
     CCLabelTTF * scoreLabel;
     CCAction *spinningCoin;
     NSMutableArray* spinningFrames;
