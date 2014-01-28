@@ -41,6 +41,9 @@ int * coinCount;
 	if ((self = [super init]))
 	{
         //Dimensions
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        
+        
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
         CGFloat screenHeight = screenRect.size.height;
@@ -92,7 +95,7 @@ int * coinCount;
         
         //ADD THE SCORE LABEL
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
-        scoreLabel.position = ccp(220, 450); //Middle of the screen...
+        scoreLabel.position = ccp(winSize.width - 110, winSize.height - 30); //Middle of the screen...
         [self addChild:scoreLabel z:1];
         
         //SCHEDULE UPDATE
@@ -110,8 +113,12 @@ int * coinCount;
         {
             if (timer < 20)
             {
-                int xcoin = arc4random() % 320;
-                int ycoin = arc4random() % 480;
+                CGRect screenRect = [[UIScreen mainScreen] bounds];
+                int screenWidth = screenRect.size.width;
+                int screenHeight = screenRect.size.height;
+                
+                int xcoin = arc4random() % screenWidth;
+                int ycoin = arc4random() % screenHeight;
                 
                 //MAKE THE COINS SPIN
                 [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spinningCoin.plist"];

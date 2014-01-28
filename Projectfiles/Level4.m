@@ -42,6 +42,10 @@ CCSprite * fire5;
 	if ((self = [super init]))
 	{
         
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        int shipPositionX = winSize.width / 2;
+        int shipPositionY = winSize.height / 2;
+        
         //INITIALIZE THE ARRAY TO KEEP TRACK OF COINS AND ASTEROIDS
         coins = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
@@ -53,7 +57,7 @@ CCSprite * fire5;
         
         //CREATE SHIP
         ship = [CCSprite spriteWithFile:@"darkship.png"];
-        ship.position = ccp(50, 50);
+        ship.position = ccp(shipPositionX, shipPositionY);
         [self addChild:ship];
         
         //KEEP TRACK OF SCORE
@@ -61,7 +65,7 @@ CCSprite * fire5;
         
         //ADD THE SCORE LABEL
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
-        scoreLabel.position = ccp(220, 450); //Middle of the screen...
+        scoreLabel.position = ccp(winSize.width - 110, winSize.height - 30); //Middle of the screen...
         [self addChild:scoreLabel z:1];
         
         //SCHEDULE UPDATE
@@ -75,8 +79,15 @@ CCSprite * fire5;
     int timer = arc4random() % 1000;//makes coins appear randomly
     if (timer < 20)
     {
-        int xcoin = arc4random() % 320;
-        int ycoin = arc4random() % 480;
+        
+        //Dimensions
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        int screenWidth = screenRect.size.width;
+        int screenHeight = screenRect.size.height;
+        
+        int xcoin = arc4random() % screenWidth;
+        int ycoin = arc4random() % screenHeight;
+
         
         //MAKE THE COINS SPIN
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spinningCoin.plist"];
@@ -112,7 +123,7 @@ CCSprite * fire5;
 -(void) createAsteroids
 {
     
-    int timer = arc4random() % 1000;//makes coins appear randomly
+    int timer = arc4random() % 30000;//makes coins appear randomly
     
     if (timer < 10)
         
