@@ -13,17 +13,21 @@
 
 
 
+
 //DEFINE OBJECTS
 CCSprite * background;
 CCSprite * ship;
 CCSprite * fire;
 CCSprite * coin;
 CCSprite * asteroid;
+CCSprite * fastForward;
 CCRepeatForever * spinCoin;
 NSMutableArray * coins;
 NSMutableArray * asteroids;
+NSMutableArray * powerups;
 CCSprite * coinHelper;
 CCSprite * asteroidHelper;
+CCSprite * powerupHelper;
 CCSprite * ast1;
 CCSprite * ast2;
 CCSprite * ast3;
@@ -39,6 +43,9 @@ CCSprite * fire5;
 @end
 
 @implementation infiniteMode
+
+
+
 -(id) init
 {
 	if ((self = [super init]))
@@ -54,6 +61,7 @@ CCSprite * fire5;
         //INITIALIZE THE ARRAY TO KEEP TRACK OF COINS AND ASTEROIDS
         coins = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
+        powerups = [[NSMutableArray alloc] init];
         
         //CREATE BACKDROP
         background = [CCSprite spriteWithFile:@"spaceBackground.png"];
@@ -61,22 +69,27 @@ CCSprite * fire5;
         [self addChild:background];
         
         //CREATE SHIP
-        ship = [CCSprite spriteWithFile:@"darkship.png"];
+        ship = [CCSprite spriteWithFile:@"blackship.png"];
         ship.position = ccp(screenWidth/2, screenHeight/2);
         [self addChild:ship];
         
         //KEEP TRACK OF SCORE
         newScore = 0;
         
+        
+        //DEFINE POWERUP STATUS
+        self.powerUp = PowerUp_Level0;
+        
         //MAKE ASTEROIDS MORE FREQUENT
-        timerHelper = 20000;
+        timerHelper = 15000;
         
         //ADD THE SCORE LABEL
-        scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
+        scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) hAlignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
         scoreLabel.position = ccp(winSize.width - 110, winSize.height - 30); //Middle of the screen...
         [self addChild:scoreLabel z:1];
         
         //LOAD SOUND
+
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"DeathFlash.wav"];
 
         
@@ -85,6 +98,7 @@ CCSprite * fire5;
 	}
 	return self;
 }
+
 
 -(void) createCoins
 {
@@ -212,9 +226,37 @@ CCSprite * fire5;
             timerHelper -= 100;
         }
     }
-    
 }
 
+-(void) createPowerups
+{
+    if ([powerups count] == 0)
+    {
+        //WHERE TO RANDOMLY PLACE THE POWERUPS
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        int screenWidth = screenRect.size.width;
+        int screenHeight = screenRect.size.height;
+        
+        int xPowerup = arc4random() % screenWidth;
+        int yPowerup = arc4random() % screenHeight;
+        
+        int timer = arc4random() % 100;
+        if (timer == 1)
+        {
+            fastForward = [CCSprite spriteWithFile:@"fastForward.png"];
+            fastForward.position = ccp(xPowerup, yPowerup);
+            [self addChild:fastForward];
+            [powerups addObject:fastForward];
+        }
+    }
+
+}
+
+-(void) removeOldPowerups:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
+    [powerups removeObjectIdenticalTo:sender];
+}
 
 -(void) detectCollisions
 {
@@ -265,14 +307,34 @@ CCSprite * fire5;
                     [self removeChild:asteroidHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
+
                     [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
 
                 }
             }
         }
     }
+    for(int i = 0; i < [powerups count]; i++)
+    {
+        NSInteger first = i;
+        powerupHelper = [powerups objectAtIndex: first];
+        if (powerupHelper.position.x < (ship.position.x + 40) && powerupHelper.position.x > ship.position.x - 40)
+        {
+            if (powerupHelper.position.y < (ship.position.y + 60) && powerupHelper.position.y > ship.position.y - 80)
+            {
+                [self removeChild:powerupHelper cleanup:YES];
+                [powerups removeObjectAtIndex:first];
+                self.powerUp = PowerUp_Level1;
+                [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
 
-    
+                
+            }
+        }
+    }
+}
+
+- (void)resetPowerUp {
+    self.powerUp = PowerUp_Level0;
 }
 
 - (void)updateScore:(int)newScore
@@ -282,22 +344,40 @@ CCSprite * fire5;
 
 -(void) update:(ccTime)dt
 {
-    
-    //MAKES SHIP MOVE TO TAP LOCATION
-    KKInput * input = [KKInput sharedInput];
-    CGPoint tap = [input locationOfAnyTouchInPhase:KKTouchPhaseBegan];
-    ship.position = ccp( ship.position.x, ship.position.y);
-    if (tap.x != 0 && tap.y != 0)
+    if (self.powerUp == PowerUp_Level0)
     {
-        [ship stopAllActions]; // Nullifies previous actions
-        int addedx = tap.x - ship.position.x;
-        int addedy = tap.y - ship.position.y;
-        int squaredx = pow(addedx, 2);
-        int squaredy = pow(addedy, 2);
-        int addedSquares = squaredx + squaredy;
-        int distance = pow(addedSquares, 0.5);
-        [ship runAction: [CCMoveTo actionWithDuration:distance/100 position:tap]];//makes ship move at a constant speed
+        shipSpeed = 100;
+    }
+    if (self.powerUp == PowerUp_Level1)
+    {
+        shipSpeed = 200;
+    }
+    
+    
+    CCArray* touches = [KKInput sharedInput].touches;
+    if ([touches count] > 1)
+    {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+    }
+    
+    if ([touches count] == 1)
+    {
+        //MAKES SHIP MOVE TO TAP LOCATION
+        KKInput * input = [KKInput sharedInput];
+        CGPoint tap = [input locationOfAnyTouchInPhase:KKTouchPhaseBegan];
+        ship.position = ccp( ship.position.x, ship.position.y);
+        if (tap.x != 0 && tap.y != 0)
+        {
+            [ship stopAllActions]; // Nullifies previous actions
+            int addedx = tap.x - ship.position.x;
+            int addedy = tap.y - ship.position.y;
+            int squaredx = pow(addedx, 2);
+            int squaredy = pow(addedy, 2);
+            int addedSquares = squaredx + squaredy;
+            int distance = pow(addedSquares, 0.5);
+            [ship runAction: [CCMoveTo actionWithDuration:distance/shipSpeed position:tap]];//makes ship move at a constant speed
 
+        }
     }
     
     if(ast1.position.x > 0 && ast1.position.x < 400)
@@ -357,6 +437,7 @@ CCSprite * fire5;
         
     }
     [self createCoins];
+    [self createPowerups];
     [self detectCollisions];
 }
 

@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07093EC518806C8E007B3705 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 07093EC418806C8E007B3705 /* ship.png */; };
-		07093EC718806DB4007B3705 /* ship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07093EC618806DB4007B3705 /* ship-hd.png */; };
-		07093EC918806F0C007B3705 /* darkship.png in Resources */ = {isa = PBXBuildFile; fileRef = 07093EC818806F0C007B3705 /* darkship.png */; };
 		0717CC6318885FC9006A2648 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0717CC6218885FC9006A2648 /* SpriteKit.framework */; };
 		0717CC65188867F6006A2648 /* burning_star_v1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0717CC64188867F6006A2648 /* burning_star_v1.plist */; };
 		0717CC681889B776006A2648 /* infiniteMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC671889B776006A2648 /* infiniteMode.m */; };
@@ -19,12 +16,13 @@
 		0717CC7318905389006A2648 /* Level3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC7218905389006A2648 /* Level3.m */; };
 		0717CC7618905396006A2648 /* Level4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC7518905396006A2648 /* Level4.m */; };
 		0717CC79189053A5006A2648 /* Level5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC78189053A5006A2648 /* Level5.m */; };
-		0717CC7C18905A1C006A2648 /* DeathFlash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0717CC7B18905A1C006A2648 /* DeathFlash.wav */; };
 		0756313718871BDD0070C5A9 /* asteroid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0756313618871BDD0070C5A9 /* asteroid1.png */; };
 		079310011891A42D00EA1805 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 079310001891A42D00EA1805 /* Tutorial.m */; };
 		079310031891A5B700EA1805 /* fastForward.png in Resources */ = {isa = PBXBuildFile; fileRef = 079310021891A5B700EA1805 /* fastForward.png */; };
 		07A4F3B318847587002276D8 /* spinningCoin.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A4F3B218847587002276D8 /* spinningCoin.png */; };
 		07A4F3B518847591002276D8 /* spinningCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07A4F3B418847591002276D8 /* spinningCoin.plist */; };
+		07F6F7621899C7D200CB38EA /* DeathFlash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F7611899C7D200CB38EA /* DeathFlash.wav */; };
+		07F6F76D1899DE9400CB38EA /* blackship.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F76C1899DE9400CB38EA /* blackship.png */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -67,9 +65,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07093EC418806C8E007B3705 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
-		07093EC618806DB4007B3705 /* ship-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ship-hd.png"; sourceTree = "<group>"; };
-		07093EC818806F0C007B3705 /* darkship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkship.png; sourceTree = "<group>"; };
 		0717CC6218885FC9006A2648 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpriteKit.framework; sourceTree = "<group>"; };
 		0717CC64188867F6006A2648 /* burning_star_v1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = burning_star_v1.plist; sourceTree = "<group>"; };
 		0717CC661889B763006A2648 /* infiniteMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infiniteMode.h; sourceTree = "<group>"; };
@@ -85,13 +80,14 @@
 		0717CC7518905396006A2648 /* Level4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level4.m; sourceTree = "<group>"; };
 		0717CC77189053A5006A2648 /* Level5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level5.h; sourceTree = "<group>"; };
 		0717CC78189053A5006A2648 /* Level5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level5.m; sourceTree = "<group>"; };
-		0717CC7B18905A1C006A2648 /* DeathFlash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DeathFlash.wav; sourceTree = "<group>"; };
 		0756313618871BDD0070C5A9 /* asteroid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid1.png; sourceTree = "<group>"; };
 		07930FFF1891A42D00EA1805 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
 		079310001891A42D00EA1805 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		079310021891A5B700EA1805 /* fastForward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastForward.png; sourceTree = "<group>"; };
 		07A4F3B218847587002276D8 /* spinningCoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinningCoin.png; sourceTree = "<group>"; };
 		07A4F3B418847591002276D8 /* spinningCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spinningCoin.plist; sourceTree = "<group>"; };
+		07F6F7611899C7D200CB38EA /* DeathFlash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DeathFlash.wav; sourceTree = "<group>"; };
+		07F6F76C1899DE9400CB38EA /* blackship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackship.png; path = ../../../../../Desktop/blackship.png; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -294,14 +290,12 @@
 			children = (
 				07A4F3B418847591002276D8 /* spinningCoin.plist */,
 				0717CC69188D97D3006A2648 /* spaceBackground.png */,
+				07F6F76C1899DE9400CB38EA /* blackship.png */,
 				07A4F3B218847587002276D8 /* spinningCoin.png */,
 				0756313618871BDD0070C5A9 /* asteroid1.png */,
+				07F6F7611899C7D200CB38EA /* DeathFlash.wav */,
 				079310021891A5B700EA1805 /* fastForward.png */,
 				0717CC64188867F6006A2648 /* burning_star_v1.plist */,
-				07093EC618806DB4007B3705 /* ship-hd.png */,
-				0717CC7B18905A1C006A2648 /* DeathFlash.wav */,
-				07093EC818806F0C007B3705 /* darkship.png */,
-				07093EC418806C8E007B3705 /* ship.png */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 			);
 			path = Resources;
@@ -399,28 +393,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0717CC7C18905A1C006A2648 /* DeathFlash.wav in Resources */,
 				0756313718871BDD0070C5A9 /* asteroid1.png in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
-				07093EC918806F0C007B3705 /* darkship.png in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
-				07093EC718806DB4007B3705 /* ship-hd.png in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				0717CC6A188D97D3006A2648 /* spaceBackground.png in Resources */,
 				0717CC65188867F6006A2648 /* burning_star_v1.plist in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
+				07F6F7621899C7D200CB38EA /* DeathFlash.wav in Resources */,
 				079310031891A5B700EA1805 /* fastForward.png in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
+				07F6F76D1899DE9400CB38EA /* blackship.png in Resources */,
 				07A4F3B318847587002276D8 /* spinningCoin.png in Resources */,
-				07093EC518806C8E007B3705 /* ship.png in Resources */,
 				07A4F3B518847591002276D8 /* spinningCoin.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

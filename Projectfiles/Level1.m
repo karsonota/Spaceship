@@ -59,7 +59,7 @@ int * coinCount;
         [self addChild:background];
         
         //CREATE SHIP
-        ship = [CCSprite spriteWithFile:@"darkship.png"];
+        ship = [CCSprite spriteWithFile:@"blackship.png"];
         ship.position = ccp(screenWidth/2, screenHeight/2);
         [self addChild:ship];
         

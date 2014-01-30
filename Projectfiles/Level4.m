@@ -56,7 +56,7 @@ CCSprite * fire5;
         [self addChild:background];
         
         //CREATE SHIP
-        ship = [CCSprite spriteWithFile:@"darkship.png"];
+        ship = [CCSprite spriteWithFile:@"blackship.png"];
         ship.position = ccp(shipPositionX, shipPositionY);
         [self addChild:ship];
         

@@ -57,7 +57,7 @@ CCSprite * fire5;
         [self addChild:background];
         
         //CREATE SHIP
-        ship = [CCSprite spriteWithFile:@"darkship.png"];
+        ship = [CCSprite spriteWithFile:@"blackship.png"];
         //ship.position = ccp(screenWidth/2, screenHeight/2);
         ship.position = ccp(shipPositionX, shipPositionY);
         [self addChild:ship];
@@ -267,6 +267,9 @@ CCSprite * fire5;
 
 -(void) update:(ccTime)dt
 {
+    
+    
+    
     
     //MAKES SHIP MOVE TO TAP LOCATION
     KKInput * input = [KKInput sharedInput];
