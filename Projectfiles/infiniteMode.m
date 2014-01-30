@@ -76,9 +76,9 @@ CCSprite * fire5;
         //KEEP TRACK OF SCORE
         newScore = 0;
         
-        
         //DEFINE POWERUP STATUS
-        self.powerUp = PowerUp_Level0;
+        self.powerUpWaiting = PowerUpWaiting_Level0;
+        self.powerUpActive = PowerUpActive_Level0;
         
         //MAKE ASTEROIDS MORE FREQUENT
         timerHelper = 15000;
@@ -160,8 +160,6 @@ CCSprite * fire5;
         [asteroids addObject:ast1];
         ast1.position =ccp(ast1.position.x + 3, ast1.position.y + 3);
         fire1.position = ast1.position;
-        
-
     }
     
     if (timer > 10 && timer <20)
@@ -175,7 +173,6 @@ CCSprite * fire5;
         [asteroids addObject:ast2];
         ast2.position =ccp(ast2.position.x + 5, ast2.position.y);
         fire2.position = ast2.position;
-
     }
     
     if (timer > 20 && timer <30)
@@ -189,7 +186,6 @@ CCSprite * fire5;
         [asteroids addObject:ast3];
         ast3.position =ccp(ast3.position.x + 5, ast3.position.y);
         fire3.position = ast3.position;
-
     }
     
     if (timer > 30 && timer <40)
@@ -203,13 +199,11 @@ CCSprite * fire5;
         [asteroids addObject:ast4];
         ast4.position =ccp(ast4.position.x - 3, ast4.position.y + 4);
         fire4.position = ast4.position;
-
     }
     
     if (timer > 40 && timer <50)
         
     {
-        
         fire5 = [CCParticleSystemQuad particleWithFile:@"burning_star_v1.plist"];
         [self addChild:fire5];
         ast5  = [CCSprite spriteWithFile: @"asteroid1.png"];
@@ -324,8 +318,8 @@ CCSprite * fire5;
             {
                 [self removeChild:powerupHelper cleanup:YES];
                 [powerups removeObjectAtIndex:first];
-                self.powerUp = PowerUp_Level1;
-                [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
+                self.powerUpWaiting = PowerUpWaiting_Level1;
+//                [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
 
                 
             }
@@ -334,7 +328,7 @@ CCSprite * fire5;
 }
 
 - (void)resetPowerUp {
-    self.powerUp = PowerUp_Level0;
+    self.powerUpActive = PowerUpActive_Level0;
 }
 
 - (void)updateScore:(int)newScore
@@ -344,21 +338,33 @@ CCSprite * fire5;
 
 -(void) update:(ccTime)dt
 {
-    if (self.powerUp == PowerUp_Level0)
+    CCArray* touches = [KKInput sharedInput].touches;
+    if ([touches count] > 1)
+    {
+        if (self.powerUpWaiting == PowerUpWaiting_Level1)
+        {
+            self.powerUpWaiting = PowerUpWaiting_Level0;
+            self.powerUpActive = PowerUpActive_Level1;
+            [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
+        }
+        
+        
+
+        [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+    }
+    
+    
+    if (self.powerUpActive == PowerUpActive_Level0)
     {
         shipSpeed = 100;
     }
-    if (self.powerUp == PowerUp_Level1)
+    if (self.powerUpActive == PowerUpActive_Level1)
     {
         shipSpeed = 200;
     }
     
     
-    CCArray* touches = [KKInput sharedInput].touches;
-    if ([touches count] > 1)
-    {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
-    }
+    
     
     if ([touches count] == 1)
     {
