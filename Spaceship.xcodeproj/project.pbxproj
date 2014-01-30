@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0717CC6318885FC9006A2648 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0717CC6218885FC9006A2648 /* SpriteKit.framework */; };
 		0717CC65188867F6006A2648 /* burning_star_v1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0717CC64188867F6006A2648 /* burning_star_v1.plist */; };
 		0717CC681889B776006A2648 /* infiniteMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717CC671889B776006A2648 /* infiniteMode.m */; };
 		0717CC6A188D97D3006A2648 /* spaceBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0717CC69188D97D3006A2648 /* spaceBackground.png */; };
@@ -23,11 +22,14 @@
 		07A4F3B518847591002276D8 /* spinningCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07A4F3B418847591002276D8 /* spinningCoin.plist */; };
 		07F6F7621899C7D200CB38EA /* DeathFlash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F7611899C7D200CB38EA /* DeathFlash.wav */; };
 		07F6F76F189A07D800CB38EA /* blackship.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F76E189A07D800CB38EA /* blackship.png */; };
+		07F6F77F189AEFD800CB38EA /* spaceBackground-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F77E189AEFD800CB38EA /* spaceBackground-ipadhd.png */; };
+		07F6F781189AF78900CB38EA /* fastForwardWaiting.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F780189AF78900CB38EA /* fastForwardWaiting.png */; };
+		07F6F785189AFE4900CB38EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F784189AFE4900CB38EA /* Default-568h@2x.png */; };
+		07F6F787189AFED700CB38EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F786189AFED700CB38EA /* Default.png */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
 		DC21B88F1511079900FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88E1511079900FD4891 /* fps_images.png */; };
-		DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC27219E160CADFF00D88944 /* Default-568h@2x.png */; };
 		DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = DC2721A7160CAFA600D88944 /* iTunesArtwork */; };
 		DC485B1113AA0E5600F2BC70 /* libchipmunk-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */; };
 		DC485B1713AA0EBB00F2BC70 /* libbox2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */; };
@@ -44,7 +46,6 @@
 		DC65616613A969B600A7AC53 /* libsneakyinput-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65615A13A969B600A7AC53 /* libsneakyinput-ios.a */; };
 		DC979E3E13B35F8800656CB9 /* libcocos2d-extensions-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC979E3D13B35F8800656CB9 /* libcocos2d-extensions-mac.a */; };
 		DC979E5A13B3607E00656CB9 /* libchipmunk-spacemanager-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC979E5913B3607E00656CB9 /* libchipmunk-spacemanager-mac.a */; };
-		DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0F913A94ED5005BD75D /* Default.png */; };
 		DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FD13A94ED5005BD75D /* Icon-72.png */; };
 		DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */; };
 		DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10113A94ED5005BD75D /* Icon-Small.png */; };
@@ -65,7 +66,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0717CC6218885FC9006A2648 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpriteKit.framework; sourceTree = "<group>"; };
 		0717CC64188867F6006A2648 /* burning_star_v1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = burning_star_v1.plist; sourceTree = "<group>"; };
 		0717CC661889B763006A2648 /* infiniteMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infiniteMode.h; sourceTree = "<group>"; };
 		0717CC671889B776006A2648 /* infiniteMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = infiniteMode.m; sourceTree = "<group>"; };
@@ -88,11 +88,14 @@
 		07A4F3B418847591002276D8 /* spinningCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spinningCoin.plist; sourceTree = "<group>"; };
 		07F6F7611899C7D200CB38EA /* DeathFlash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DeathFlash.wav; sourceTree = "<group>"; };
 		07F6F76E189A07D800CB38EA /* blackship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackship.png; sourceTree = "<group>"; };
+		07F6F77E189AEFD800CB38EA /* spaceBackground-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spaceBackground-ipadhd.png"; sourceTree = "<group>"; };
+		07F6F780189AF78900CB38EA /* fastForwardWaiting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastForwardWaiting.png; sourceTree = "<group>"; };
+		07F6F784189AFE4900CB38EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		07F6F786189AFED700CB38EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		DC21B88E1511079900FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
-		DC27219E160CADFF00D88944 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC2721A7160CAFA600D88944 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +117,6 @@
 		DC9C33E813B5024400931BF2 /* BuildSettings-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Mac.xcconfig"; sourceTree = "<group>"; };
 		DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-Mac.xcconfig"; sourceTree = "<group>"; };
 		DCC1A0E313A94ED5005BD75D /* Spaceship-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spaceship-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCC1A0F913A94ED5005BD75D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DCC1A0FD13A94ED5005BD75D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
 		DCC1A10113A94ED5005BD75D /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -147,7 +149,6 @@
 				DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */,
 				DC65615D13A969B600A7AC53 /* libchipmunk-ios.a in Frameworks */,
 				DC65615E13A969B600A7AC53 /* libchipmunk-spacemanager-ios.a in Frameworks */,
-				0717CC6318885FC9006A2648 /* SpriteKit.framework in Frameworks */,
 				DC65616013A969B600A7AC53 /* libcocos2d-extensions-ios.a in Frameworks */,
 				DC65616113A969B600A7AC53 /* libcocos2d-ios.a in Frameworks */,
 				DC65616213A969B600A7AC53 /* libcocos3d-ios.a in Frameworks */,
@@ -199,7 +200,6 @@
 		DCC1A0E613A94ED5005BD75D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0717CC6218885FC9006A2648 /* SpriteKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,8 +219,8 @@
 				DC21B88A1511078F00FD4891 /* fps_images.png */,
 				DC21B8881511078F00FD4891 /* fps_images-hd.png */,
 				DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */,
-				DCC1A0F913A94ED5005BD75D /* Default.png */,
-				DC27219E160CADFF00D88944 /* Default-568h@2x.png */,
+				07F6F786189AFED700CB38EA /* Default.png */,
+				07F6F784189AFE4900CB38EA /* Default-568h@2x.png */,
 				DCC1A0FD13A94ED5005BD75D /* Icon-72.png */,
 				DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */,
 				DCC1A10113A94ED5005BD75D /* Icon-Small.png */,
@@ -290,11 +290,13 @@
 			children = (
 				07A4F3B418847591002276D8 /* spinningCoin.plist */,
 				0717CC69188D97D3006A2648 /* spaceBackground.png */,
+				07F6F77E189AEFD800CB38EA /* spaceBackground-ipadhd.png */,
 				07A4F3B218847587002276D8 /* spinningCoin.png */,
 				0756313618871BDD0070C5A9 /* asteroid1.png */,
 				07F6F76E189A07D800CB38EA /* blackship.png */,
 				07F6F7611899C7D200CB38EA /* DeathFlash.wav */,
 				079310021891A5B700EA1805 /* fastForward.png */,
+				07F6F780189AF78900CB38EA /* fastForwardWaiting.png */,
 				0717CC64188867F6006A2648 /* burning_star_v1.plist */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 			);
@@ -394,22 +396,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				0756313718871BDD0070C5A9 /* asteroid1.png in Resources */,
-				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
+				07F6F785189AFE4900CB38EA /* Default-568h@2x.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				0717CC6A188D97D3006A2648 /* spaceBackground.png in Resources */,
 				0717CC65188867F6006A2648 /* burning_star_v1.plist in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
+				07F6F77F189AEFD800CB38EA /* spaceBackground-ipadhd.png in Resources */,
 				07F6F7621899C7D200CB38EA /* DeathFlash.wav in Resources */,
 				079310031891A5B700EA1805 /* fastForward.png in Resources */,
+				07F6F781189AF78900CB38EA /* fastForwardWaiting.png in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
-				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
+				07F6F787189AFED700CB38EA /* Default.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
 				07F6F76F189A07D800CB38EA /* blackship.png in Resources */,
 				07A4F3B318847587002276D8 /* spinningCoin.png in Resources */,
@@ -499,6 +503,7 @@
 					"$(inherited)",
 					"/Users/kevinlota/Kobold2D/Kobold2D-2.1.0/Spaceship",
 				);
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -510,6 +515,7 @@
 					"$(inherited)",
 					"/Users/kevinlota/Kobold2D/Kobold2D-2.1.0/Spaceship",
 				);
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

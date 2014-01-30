@@ -63,7 +63,7 @@ CCSprite * fire5;
         [self addChild:ship];
         
         //KEEP TRACK OF SCORE
-        newScore = 0;
+        newScoreLevel2 = 0;
         
         //ADD THE SCORE LABEL
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
@@ -217,8 +217,8 @@ CCSprite * fire5;
                 {
                     [self removeChild:coinHelper cleanup:YES];
                     [coins removeObjectAtIndex:first];
-                    newScore++;
-                    [self updateScore:newScore];
+                    newScoreLevel2++;
+                    [self updateScore:newScoreLevel2];
                 }
             }
         }
@@ -260,9 +260,9 @@ CCSprite * fire5;
     
 }
 
-- (void)updateScore:(int)newScore
+- (void)updateScore:(int)newScoreLevel2
 {
-    [scoreLabel setString: [NSString stringWithFormat:@"%d", newScore]];
+    [scoreLabel setString: [NSString stringWithFormat:@"%d", newScoreLevel2]];
 }
 
 -(void) update:(ccTime)dt

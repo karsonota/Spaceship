@@ -1,7 +1,7 @@
 /*
  * Kobold2D™ --- http://www.kobold2d.org
  *
- * Copyright (c) 2010-2011 Steffen Itterheim. 
+ * Copyright (c) 2010-2011 Steffen Itterheim.
  * Released under MIT License in Germany (LICENSE-Kobold2D.txt).
  */
 
@@ -22,6 +22,7 @@ CCSprite * coin;
 CCSprite * asteroid;
 CCSprite * fastForward;
 CCRepeatForever * spinCoin;
+CCSprite * fastForwardWaiting;
 NSMutableArray * coins;
 NSMutableArray * asteroids;
 NSMutableArray * powerups;
@@ -51,7 +52,7 @@ CCSprite * fire5;
 	if ((self = [super init]))
 	{
         CGSize winSize = [CCDirector sharedDirector].winSize;
-
+        
         
         //GET SCREEN DIMENSIONS
         CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -76,9 +77,9 @@ CCSprite * fire5;
         //KEEP TRACK OF SCORE
         newScore = 0;
         
-        
         //DEFINE POWERUP STATUS
-        self.powerUp = PowerUp_Level0;
+        self.powerUpWaiting = PowerUpWaiting_Level0;
+        self.powerUpActive = PowerUpActive_Level0;
         
         //MAKE ASTEROIDS MORE FREQUENT
         timerHelper = 15000;
@@ -89,9 +90,9 @@ CCSprite * fire5;
         [self addChild:scoreLabel z:1];
         
         //LOAD SOUND
-
+        
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"DeathFlash.wav"];
-
+        
         
         //SCHEDULE UPDATE
         [self scheduleUpdate];
@@ -111,7 +112,7 @@ CCSprite * fire5;
         
         int xcoin = arc4random() % screenWidth;
         int ycoin = arc4random() % screenHeight;
-
+        
         //MAKE THE COINS SPIN
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spinningCoin.plist"];
         CCSpriteBatchNode * spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spinningCoin.png"];
@@ -160,8 +161,6 @@ CCSprite * fire5;
         [asteroids addObject:ast1];
         ast1.position =ccp(ast1.position.x + 3, ast1.position.y + 3);
         fire1.position = ast1.position;
-        
-
     }
     
     if (timer > 10 && timer <20)
@@ -175,7 +174,6 @@ CCSprite * fire5;
         [asteroids addObject:ast2];
         ast2.position =ccp(ast2.position.x + 5, ast2.position.y);
         fire2.position = ast2.position;
-
     }
     
     if (timer > 20 && timer <30)
@@ -189,7 +187,6 @@ CCSprite * fire5;
         [asteroids addObject:ast3];
         ast3.position =ccp(ast3.position.x + 5, ast3.position.y);
         fire3.position = ast3.position;
-
     }
     
     if (timer > 30 && timer <40)
@@ -203,13 +200,11 @@ CCSprite * fire5;
         [asteroids addObject:ast4];
         ast4.position =ccp(ast4.position.x - 3, ast4.position.y + 4);
         fire4.position = ast4.position;
-
     }
     
     if (timer > 40 && timer <50)
         
     {
-        
         fire5 = [CCParticleSystemQuad particleWithFile:@"burning_star_v1.plist"];
         [self addChild:fire5];
         ast5  = [CCSprite spriteWithFile: @"asteroid1.png"];
@@ -221,16 +216,16 @@ CCSprite * fire5;
     }
     if (timer < 50)
     {
-        if (timerHelper < 150)
+        if (timerHelper > 200)
         {
-            timerHelper -= 100;
+            timerHelper -= 150;
         }
     }
 }
 
 -(void) createPowerups
 {
-    if ([powerups count] == 0)
+    if ([powerups count] == 0 && self.powerUpWaiting == PowerUpWaiting_Level0)
     {
         //WHERE TO RANDOMLY PLACE THE POWERUPS
         CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -247,9 +242,10 @@ CCSprite * fire5;
             fastForward.position = ccp(xPowerup, yPowerup);
             [self addChild:fastForward];
             [powerups addObject:fastForward];
+            [fastForward runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldPowerups:)], nil]];
         }
     }
-
+    
 }
 
 -(void) removeOldPowerups:(id)sender
@@ -275,7 +271,7 @@ CCSprite * fire5;
                     newScore++;
                     [self updateScore:newScore];
                 }
-            } 
+            }
         }
     }
     for(int i = 0; i < [asteroids count]; i++)
@@ -307,9 +303,9 @@ CCSprite * fire5;
                     [self removeChild:asteroidHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
-
+                    
                     [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
-
+                    
                 }
             }
         }
@@ -324,9 +320,11 @@ CCSprite * fire5;
             {
                 [self removeChild:powerupHelper cleanup:YES];
                 [powerups removeObjectAtIndex:first];
-                self.powerUp = PowerUp_Level1;
-                [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
-
+                self.powerUpWaiting = PowerUpWaiting_Level1;
+                
+                fastForwardWaiting = [CCSprite spriteWithFile:@"fastForwardWaiting.png"];
+                fastForwardWaiting.position = ccp(scoreLabel.position.x + 100, scoreLabel.position.y - 25);
+                [self addChild:fastForwardWaiting];
                 
             }
         }
@@ -334,7 +332,7 @@ CCSprite * fire5;
 }
 
 - (void)resetPowerUp {
-    self.powerUp = PowerUp_Level0;
+    self.powerUpActive = PowerUpActive_Level0;
 }
 
 - (void)updateScore:(int)newScore
@@ -344,28 +342,35 @@ CCSprite * fire5;
 
 -(void) update:(ccTime)dt
 {
-    if (self.powerUp == PowerUp_Level0)
-    {
-        shipSpeed = 100;
-    }
-    if (self.powerUp == PowerUp_Level1)
-    {
-        shipSpeed = 200;
-    }
-    
-    
     CCArray* touches = [KKInput sharedInput].touches;
     if ([touches count] > 1)
     {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+        if (self.powerUpWaiting == PowerUpWaiting_Level1)
+        {
+            self.powerUpWaiting = PowerUpWaiting_Level0;
+            self.powerUpActive = PowerUpActive_Level1;
+            [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
+            [self removeChild:fastForwardWaiting cleanup:YES];
+
+        }
     }
+    
+    
+    if (self.powerUpActive == PowerUpActive_Level0)
+    {
+        shipSpeed = 100;
+    }
+    if (self.powerUpActive == PowerUpActive_Level1)
+    {
+        shipSpeed = 200;
+    }
+
     
     if ([touches count] == 1)
     {
         //MAKES SHIP MOVE TO TAP LOCATION
         KKInput * input = [KKInput sharedInput];
         CGPoint tap = [input locationOfAnyTouchInPhase:KKTouchPhaseBegan];
-        ship.position = ccp( ship.position.x, ship.position.y);
         if (tap.x != 0 && tap.y != 0)
         {
             [ship stopAllActions]; // Nullifies previous actions
@@ -376,65 +381,48 @@ CCSprite * fire5;
             int addedSquares = squaredx + squaredy;
             int distance = pow(addedSquares, 0.5);
             [ship runAction: [CCMoveTo actionWithDuration:distance/shipSpeed position:tap]];//makes ship move at a constant speed
-
         }
     }
     
-    if(ast1.position.x > 0 && ast1.position.x < 400)
+    if(ast1.position.x > 0 && ast1.position.x < 1600)
         
     {
-        
         ast1.position =ccp(ast1.position.x + 3, ast1.position.y + 3);
         fire1.position = ast1.position;
-        
     }
     
-    else if(ast2.position.x > 0 && ast2.position.x < 400)
+    else if(ast2.position.x > 0 && ast2.position.x < 1600)
         
     {
-        
         ast2.position =ccp(ast2.position.x + 5, ast2.position.y);
         fire2.position = ast2.position;
-
-        
     }
     
-    else if(ast3.position.x > 0 && ast3.position.x < 400)
+    else if(ast3.position.x > 0 && ast3.position.x < 1600)
         
     {
-        
         ast3.position =ccp(ast3.position.x + 5, ast3.position.y);
         fire3.position = ast3.position;
-
-        
     }
     
-    else if(ast4.position.y > 0 && ast4.position.y < 570)
+    else if(ast4.position.y > 0 && ast4.position.y < 2000)
         
     {
-        
         ast4.position =ccp(ast4.position.x - 3, ast4.position.y + 4);
         fire4.position = ast4.position;
-
-        
     }
     
-    else if(ast5.position.y > 0 && ast5.position.y < 570)
+    else if(ast5.position.y > 0 && ast5.position.y < 2000)
         
     {
-        
         ast5.position = ccp(ast5.position.x, ast5.position.y + 5);
         fire5.position = ast5.position;
-
-        
     }
     
     else
         
     {
-        
         [self createAsteroids];
-        
     }
     [self createCoins];
     [self createPowerups];

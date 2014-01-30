@@ -6,7 +6,6 @@
 //
 //
 
-//#import <SpriteKit/SpriteKit.h>
 #import "kobold2d.h"
 @interface Level5 : CCLayer
 {

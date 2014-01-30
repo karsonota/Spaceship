@@ -91,7 +91,7 @@ int * coinCount;
         [self addChild:fastForward];
         
         //KEEP TRACK OF SCORE
-        newScore = 0;
+        newScoreLevel1 = 0;
         
         //ADD THE SCORE LABEL
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
@@ -170,8 +170,8 @@ int * coinCount;
                 {
                     [self removeChild:coinHelper cleanup:YES];
                     [coins removeObjectAtIndex:first];
-                    newScore++;
-                    [self updateScore:newScore];
+                    newScoreLevel1++;
+                    [self updateScore:newScoreLevel1];
                 }
             }
         }
@@ -199,9 +199,9 @@ int * coinCount;
     
 }
 
-- (void)updateScore:(int)newScore
+- (void)updateScore:(int)newScoreLevel1
 {
-    [scoreLabel setString: [NSString stringWithFormat:@"%d", newScore]];
+    [scoreLabel setString: [NSString stringWithFormat:@"%d", newScoreLevel1]];
 }
 
 -(void) update:(ccTime)dt

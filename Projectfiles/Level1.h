@@ -6,11 +6,10 @@
 //
 //
 
-//#import <SpriteKit/SpriteKit.h>
 #import "kobold2d.h"
 @interface Level1 : CCLayer
 {
-    int newScore;
+    int newScoreLevel1;
     CCLabelTTF * scoreLabel;
     CCAction *spinningCoin;
     NSMutableArray* spinningFrames;
