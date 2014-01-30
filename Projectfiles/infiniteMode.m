@@ -321,10 +321,15 @@ CCSprite * fire5;
                 [self removeChild:powerupHelper cleanup:YES];
                 [powerups removeObjectAtIndex:first];
                 self.powerUpWaiting = PowerUpWaiting_Level1;
+<<<<<<< HEAD
                 
                 fastForwardWaiting = [CCSprite spriteWithFile:@"fastForwardWaiting.png"];
                 fastForwardWaiting.position = ccp(scoreLabel.position.x + 100, scoreLabel.position.y - 25);
                 [self addChild:fastForwardWaiting];
+=======
+//                [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
+
+>>>>>>> 862dd192d4057a67a5f6a92afcd81b47d238d557
                 
             }
         }
@@ -344,6 +349,28 @@ CCSprite * fire5;
 {
     CCArray* touches = [KKInput sharedInput].touches;
     if ([touches count] > 1)
+<<<<<<< HEAD
+=======
+    {
+        if (self.powerUpWaiting == PowerUpWaiting_Level1)
+        {
+            self.powerUpWaiting = PowerUpWaiting_Level0;
+            self.powerUpActive = PowerUpActive_Level1;
+            [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
+        }
+        
+        
+
+        [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+    }
+    
+    
+    if (self.powerUpActive == PowerUpActive_Level0)
+    {
+        shipSpeed = 100;
+    }
+    if (self.powerUpActive == PowerUpActive_Level1)
+>>>>>>> 862dd192d4057a67a5f6a92afcd81b47d238d557
     {
         if (self.powerUpWaiting == PowerUpWaiting_Level1)
         {
@@ -356,6 +383,7 @@ CCSprite * fire5;
     }
     
     
+<<<<<<< HEAD
     if (self.powerUpActive == PowerUpActive_Level0)
     {
         shipSpeed = 100;
@@ -365,6 +393,9 @@ CCSprite * fire5;
         shipSpeed = 200;
     }
 
+=======
+    
+>>>>>>> 862dd192d4057a67a5f6a92afcd81b47d238d557
     
     if ([touches count] == 1)
     {
