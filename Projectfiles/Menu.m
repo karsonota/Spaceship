@@ -9,6 +9,7 @@
 #import "Menu.h"
 #import "infiniteMode.h"
 #import "LevelSelect.h"
+#import "Instructions.h"
 
 CCMenu * mainMenu;
 CCSprite * background;
@@ -44,7 +45,11 @@ CCSprite * background;
                                                              selectedImage: @"LevelModeButton.png"
                                                                     target:self
                                                                   selector:@selector(goToLevelSelect:)];
-        mainMenu  = [CCMenu menuWithItems:menuItem1, menuItem2, menuItem3, nil];
+        CCMenuItemImage * menuItem4 = [CCMenuItemImage itemWithNormalImage:@"InstructionsButton.png"
+                                                             selectedImage: @"InstructionsButton.png"
+                                                                    target:self
+                                                                  selector:@selector(goToInstructions:)];
+        mainMenu  = [CCMenu menuWithItems:menuItem1, menuItem2, menuItem3, menuItem4, nil];
         [mainMenu alignItemsVertically];
         [self addChild: mainMenu];
         
@@ -61,6 +66,10 @@ CCSprite * background;
 - (void) goToLevelSelect: (CCMenuItem  *) menuItem
 {
     [[CCDirector sharedDirector] replaceScene: [[LevelSelect alloc] init]];
+}
+- (void) goToInstructions: (CCMenuItem  *) menuItem
+{
+    [[CCDirector sharedDirector] replaceScene: [[Instructions alloc] init]];
 }
 
 @end

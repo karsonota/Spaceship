@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <math.h>
 #import "SimpleAudioEngine.h"
+#import "Victory.h"
+#import "GameOver.h"
 
 
 
@@ -331,6 +333,14 @@ int * coinCount;
                     [self removeChild:asteroidHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
+                    if (newScoreLevel5 > 25)
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+                    }
+                    else
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+                    }
                     
                     [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
 
@@ -384,6 +394,18 @@ int * coinCount;
 
         }
         
+    }
+    
+    if (coinCount == 50 && [coins count] == 0)
+    {
+        if (newScoreLevel5 > 25)
+        {
+            [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+        }
+        else
+        {
+            [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+        }
     }
     
 
