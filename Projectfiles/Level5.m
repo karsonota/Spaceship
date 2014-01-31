@@ -9,6 +9,8 @@
 #import "Level5.h"
 #include <stdlib.h>
 #include <math.h>
+#import "SimpleAudioEngine.h"
+
 
 
 //DEFINE OBJECTS
@@ -20,6 +22,8 @@ CCSprite * asteroid;
 CCRepeatForever * spinCoin;
 NSMutableArray * coins;
 NSMutableArray * asteroids;
+NSMutableArray * fires;
+
 CCSprite * coinHelper;
 CCSprite * asteroidHelper;
 CCSprite * ast1;
@@ -32,6 +36,13 @@ CCSprite * fire2;
 CCSprite * fire3;
 CCSprite * fire4;
 CCSprite * fire5;
+
+CCSprite * fastForward;
+CCSprite * fastForwardWaiting;
+NSMutableArray * powerups;
+CCSprite * powerupHelper;
+int * coinCount;
+
 
 @interface Level5 (PrivateMethods)
 @end
@@ -48,6 +59,9 @@ CCSprite * fire5;
         //INITIALIZE THE ARRAY TO KEEP TRACK OF COINS AND ASTEROIDS
         coins = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
+        fires = [[NSMutableArray alloc] init];
+        powerups = [[NSMutableArray alloc] init];
+
         
         //CREATE BACKDROP
         background = [CCSprite spriteWithFile:@"spaceBackground.png"];
@@ -59,13 +73,23 @@ CCSprite * fire5;
         ship.position = ccp(shipPositionX, shipPositionY);
         [self addChild:ship];
         
+        //Coins
+        int coinCount = 0;
+        
         //KEEP TRACK OF SCORE
         newScoreLevel5 = 0;
+        
+        //DEFINE POWERUP STATUS
+        self.powerUpWaiting = PowerUpWaiting_Level0;
+        self.powerUpActive = PowerUpActive_Level0;
         
         //ADD THE SCORE LABEL
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
         scoreLabel.position = ccp(winSize.width - 110, winSize.height - 30); //Middle of the screen...
         [self addChild:scoreLabel z:1];
+        
+        //LOAD SOUND
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"DeathFlash.wav"];
         
         //SCHEDULE UPDATE
         [self scheduleUpdate];
@@ -76,40 +100,47 @@ CCSprite * fire5;
 -(void) createCoins
 {
     int timer = arc4random() % 1000;//makes coins appear randomly
-    if (timer < 20)
+    if (coinCount < 100)
     {
-        //Dimensions
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
-        int screenWidth = screenRect.size.width;
-        int screenHeight = screenRect.size.height;
-        
-        int xcoin = arc4random() % screenWidth;
-        int ycoin = arc4random() % screenHeight;
-        
-        //MAKE THE COINS SPIN
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spinningCoin.plist"];
-        CCSpriteBatchNode * spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spinningCoin.png"];
-        [self addChild:spriteSheet];
-        spinningFrames = [NSMutableArray array];
-        for(int i = 1; i <= 9; ++i)
+        if ([coins count] < 5)
         {
-            [spinningFrames addObject:
-             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"goldCoin%d.png", i]]];
+            if (timer < 20)
+            {
+                CGRect screenRect = [[UIScreen mainScreen] bounds];
+                int screenWidth = screenRect.size.width;
+                int screenHeight = screenRect.size.height;
+                
+                int xcoin = arc4random() % screenWidth;
+                int ycoin = arc4random() % screenHeight;
+                
+                //MAKE THE COINS SPIN
+                [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spinningCoin.plist"];
+                CCSpriteBatchNode * spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spinningCoin.png"];
+                [self addChild:spriteSheet];
+                spinningFrames = [NSMutableArray array];
+                for(int i = 1; i <= 9; ++i)
+                {
+                    [spinningFrames addObject:
+                     [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"goldCoin%d.png", i]]];
+                }
+                
+                //CREATE SINGLE COIN
+                coin = [CCSprite spriteWithSpriteFrameName: @"goldCoin1.png"];
+                coin.anchorPoint = CGPointZero;
+                coin.position = CGPointMake(xcoin, ycoin);
+                CCAnimation * spinning = [CCAnimation animationWithFrames: spinningFrames delay:.1];
+                spinCoin = [CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:spinning restoreOriginalFrame:NO]];
+                [coin runAction: spinCoin];
+                //new CCaction here
+                [coin runAction:[CCSequence actions:[CCDelayTime actionWithDuration:10], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldCoins:)], nil]];
+                [self addChild:coin z:0];
+                coinCount ++;
+                [coins addObject:coin];//Array keeps track of coins
+            }
         }
-        
-        //CREATE SINGLE COIN
-        coin = [CCSprite spriteWithSpriteFrameName: @"goldCoin1.png"];
-        coin.anchorPoint = CGPointZero;
-        coin.position = CGPointMake(xcoin, ycoin);
-        CCAnimation * spinning = [CCAnimation animationWithFrames: spinningFrames delay:.1];
-        spinCoin = [CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:spinning restoreOriginalFrame:NO]];
-        [coin runAction: spinCoin];
-        //new CCaction here
-        [coin runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldCoins:)], nil]];
-        [self addChild:coin z:0];
-        [coins addObject:coin];//Array keeps track of coins
     }
 }
+
 
 -(void) removeOldCoins:(id)sender
 {
@@ -196,6 +227,38 @@ CCSprite * fire5;
 }
 
 
+-(void) createPowerups
+{
+    if ([powerups count] == 0 && self.powerUpWaiting == PowerUpWaiting_Level0)
+    {
+        //WHERE TO RANDOMLY PLACE THE POWERUPS
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        int screenWidth = screenRect.size.width;
+        int screenHeight = screenRect.size.height;
+        
+        int xPowerup = arc4random() % screenWidth;
+        int yPowerup = arc4random() % screenHeight;
+        
+        int timer = arc4random() % 100;
+        if (timer == 1)
+        {
+            fastForward = [CCSprite spriteWithFile:@"fastForward.png"];
+            fastForward.position = ccp(xPowerup, yPowerup);
+            [self addChild:fastForward];
+            [powerups addObject:fastForward];
+            [fastForward runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldPowerups:)], nil]];
+        }
+    }
+}
+
+-(void) removeOldPowerups:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
+    [powerups removeObjectIdenticalTo:sender];
+}
+
+
+
 -(void) detectCollisions
 {
     for(int i = 0; i < [coins count]; i++)
@@ -245,12 +308,37 @@ CCSprite * fire5;
                     [self removeChild:asteroidHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
+                    
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+
                 }
             }
         }
     }
-    
-    
+    for(int i = 0; i < [powerups count]; i++)
+    {
+        NSInteger first = i;
+        powerupHelper = [powerups objectAtIndex: first];
+        if (powerupHelper.position.x < (ship.position.x + 40) && powerupHelper.position.x > ship.position.x - 40)
+        {
+            if (powerupHelper.position.y < (ship.position.y + 60) && powerupHelper.position.y > ship.position.y - 80)
+            {
+                [self removeChild:powerupHelper cleanup:YES];
+                [powerups removeObjectAtIndex:first];
+                self.powerUpWaiting = PowerUpWaiting_Level1;
+                
+                fastForwardWaiting = [CCSprite spriteWithFile:@"fastForwardWaiting.png"];
+                fastForwardWaiting.position = ccp(scoreLabel.position.x + 100, scoreLabel.position.y - 25);
+                [self addChild:fastForwardWaiting];
+                
+                
+            }
+        }
+    }
+}
+
+- (void)resetPowerUp {
+    self.powerUpActive = PowerUpActive_Level0;
 }
 
 - (void)updateScore:(int)newScoreLevel5
@@ -261,23 +349,50 @@ CCSprite * fire5;
 -(void) update:(ccTime)dt
 {
     
-    //MAKES SHIP MOVE TO TAP LOCATION
-    KKInput * input = [KKInput sharedInput];
-    CGPoint tap = [input locationOfAnyTouchInPhase:KKTouchPhaseBegan];
-    ship.position = ccp( ship.position.x, ship.position.y);
-    if (tap.x != 0 && tap.y != 0)
+    CCArray* touches = [KKInput sharedInput].touches;
+    if ([touches count] > 1)
     {
-        [ship stopAllActions]; // Nullifies previous actions
-        int addedx = tap.x - ship.position.x;
-        int addedy = tap.y - ship.position.y;
-        int squaredx = pow(addedx, 2);
-        int squaredy = pow(addedy, 2);
-        int addedSquares = squaredx + squaredy;
-        int distance = pow(addedSquares, 0.5);
-        [ship runAction: [CCMoveTo actionWithDuration:distance/100 position:tap]];//makes ship move at a constant speed
+        if (self.powerUpWaiting == PowerUpWaiting_Level1)
+        {
+            self.powerUpWaiting = PowerUpWaiting_Level0;
+            self.powerUpActive = PowerUpActive_Level1;
+            [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
+            [self removeChild:fastForwardWaiting cleanup:YES];
+
+        }
         
     }
     
+
+    
+    if (self.powerUpActive == PowerUpActive_Level0)
+    {
+        shipSpeed = 100;
+    }
+    if (self.powerUpActive == PowerUpActive_Level1)
+    {
+        shipSpeed = 200;
+    }
+    
+    
+    
+    if ([touches count] == 1)
+    {
+        //MAKES SHIP MOVE TO TAP LOCATION
+        KKInput * input = [KKInput sharedInput];
+        CGPoint tap = [input locationOfAnyTouchInPhase:KKTouchPhaseBegan];
+        if (tap.x != 0 && tap.y != 0)
+        {
+            [ship stopAllActions]; // Nullifies previous actions
+            int addedx = tap.x - ship.position.x;
+            int addedy = tap.y - ship.position.y;
+            int squaredx = pow(addedx, 2);
+            int squaredy = pow(addedy, 2);
+            int addedSquares = squaredx + squaredy;
+            int distance = pow(addedSquares, 0.5);
+            [ship runAction: [CCMoveTo actionWithDuration:distance/shipSpeed position:tap]];//makes ship move at a constant speed
+        }
+    }
     if(ast1.position.x > 0 && ast1.position.x < 400)
         
     {
@@ -335,6 +450,7 @@ CCSprite * fire5;
         
     }
     [self createCoins];
+    [self createPowerups];
     [self detectCollisions];
 }
 
