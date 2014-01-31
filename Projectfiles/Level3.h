@@ -9,7 +9,7 @@
 #import "kobold2d.h"
 @interface Level3 : CCLayer
 {
-    int newScore;
+    int newScoreLevel3;
     CCLabelTTF * scoreLabel;
     CCAction *spinningCoin;
     NSMutableArray* spinningFrames;

@@ -11,6 +11,7 @@
 
 -(void) initializationComplete
 {
+    NSLog(@"we are now here!!!!!!!");
 #ifdef KK_ARC_ENABLED
 	CCLOG(@"ARC is enabled");
 #else
