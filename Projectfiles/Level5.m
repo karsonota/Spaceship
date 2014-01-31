@@ -165,6 +165,9 @@ int * coinCount;
         [asteroids addObject:ast1];
         ast1.position =ccp(ast1.position.x + 3, ast1.position.y + 3);
         fire1.position = ast1.position;
+        [ast1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldAsteroids:)], nil]];
+        [fire1 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldFires:)], nil]];
+
         
     }
     
@@ -179,6 +182,8 @@ int * coinCount;
         [asteroids addObject:ast2];
         ast2.position =ccp(ast2.position.x + 5, ast2.position.y);
         fire2.position = ast2.position;
+        [ast2 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldAsteroids:)], nil]];
+        [fire2 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldFires:)], nil]];
         
     }
     
@@ -193,6 +198,8 @@ int * coinCount;
         [asteroids addObject:ast3];
         ast3.position =ccp(ast3.position.x + 5, ast3.position.y);
         fire3.position = ast3.position;
+        [ast3 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldAsteroids:)], nil]];
+        [fire3 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldFires:)], nil]];
         
     }
     
@@ -207,6 +214,8 @@ int * coinCount;
         [asteroids addObject:ast4];
         ast4.position =ccp(ast4.position.x - 3, ast4.position.y + 4);
         fire4.position = ast4.position;
+        [ast4 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldAsteroids:)], nil]];
+        [fire4 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldFires:)], nil]];
         
     }
     
@@ -222,8 +231,22 @@ int * coinCount;
         [asteroids addObject:ast5];
         ast5.position =ccp(ast5.position.x, ast5.position.y + 5);
         fire5.position = ast5.position;
+        [ast5 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldAsteroids:)], nil]];
+        [fire5 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldFires:)], nil]];
     }
     
+}
+
+-(void) removeOldAsteroids:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
+    [asteroids removeObjectIdenticalTo:sender];
+}
+
+-(void) removeOldFires:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
+    [fires removeObjectIdenticalTo:sender];
 }
 
 
