@@ -79,7 +79,7 @@ CCSprite * fire5;
 -(void) createCoins
 {
     int timer = arc4random() % 1000;//makes coins appear randomly
-    if ([coins count] < 5)
+    if ([coins count] < 50)
     {
         if (timer < 20)
         {
@@ -252,6 +252,14 @@ CCSprite * fire5;
                     [self removeChild:asteroidHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
+                    if (newScoreLevel2 > 25)
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+                    }
+                    else
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+                    }
                 }
             }
         }
@@ -286,6 +294,18 @@ CCSprite * fire5;
         int distance = pow(addedSquares, 0.5);
         [ship runAction: [CCMoveTo actionWithDuration:distance/100 position:tap]];//makes ship move at a constant speed
         
+    }
+    
+    if (coinCount == 50 && [coins count] == 0)
+    {
+        if (newScoreLevel2 > 25)
+        {
+            [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+        }
+        else
+        {
+            [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+        }
     }
     
     if(ast1.position.x > 0 && ast1.position.x < 400)
