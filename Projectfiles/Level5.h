@@ -12,7 +12,7 @@
 @interface Level5 : CCLayer
 {
     int newScoreLevel5;
-    int shipSpeed;
+    float shipSpeed;
 
     CCLabelTTF * scoreLabel;
     CCAction *spinningCoin;

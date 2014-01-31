@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <math.h>
 #import "SimpleAudioEngine.h"
+#import "PauseScreen.h"
 
 
 
@@ -17,6 +18,7 @@
 
 //DEFINE OBJECTS
 CCSprite * background;
+CCMenu * pauseButton;
 
 CCSprite * ship;
 
@@ -63,6 +65,15 @@ NSMutableArray * asteroids;
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
+        //INITIALIZES PAUSE BUTTON
+        CCMenuItemImage * menuItem1 = [CCMenuItemImage itemWithNormalImage:@"PauseButton.png"
+                                                             selectedImage: @"PauseButton.png"
+                                                                    target:self
+                                                                  selector:@selector(goToPause:)];
+        pauseButton  = [CCMenu menuWithItems:menuItem1, nil];
+        pauseButton.position = ccp(20, 20); //Middle of the screen...
+        [self addChild: pauseButton z:2];
+        
         
         //GET SCREEN DIMENSIONS
         CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -108,6 +119,11 @@ NSMutableArray * asteroids;
         [self scheduleUpdate];
 	}
 	return self;
+}
+
+- (void) goToPause: (CCMenuItem  *) menuItem
+{
+    [[CCDirector sharedDirector] pushScene: [[PauseScreen alloc] init]];
 }
 
 
@@ -399,11 +415,11 @@ NSMutableArray * asteroids;
     
     if (self.powerUpActive == PowerUpActive_Level0)
     {
-        shipSpeed = 100;
+        shipSpeed = 100.0;
     }
     if (self.powerUpActive == PowerUpActive_Level1)
     {
-        shipSpeed = 200;
+        shipSpeed = 200.0;
     }
 
     

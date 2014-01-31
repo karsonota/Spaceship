@@ -1,18 +1,18 @@
 //
-//  Instructions.m
+//  PauseScreen.m
 //  Spaceship
 //
-//  Created by James Balchunas on 1/30/14.
+//  Created by Karson Ota on 1/31/14.
 //
 //
 
-#import "Instructions.h"
+#import "PauseScreen.h"
 #import "Menu.h"
 
-CCMenu * instructionsMenu;
+CCMenu * pauseMenu;
 CCSprite * background;
 
-@implementation Instructions
+@implementation PauseScreen
 
 -(id) init
 {
@@ -34,18 +34,18 @@ CCSprite * background;
         
         
         //INITIALIZE MENU
-        [CCMenuItemFont setFontSize:20];
-        CCMenuItemImage * menuItem1 = [CCMenuItemFont itemWithString:@"Tap to move"];
-        CCMenuItemImage * menuItem2 = [CCMenuItemFont itemWithString:@"Two finger tap to activate powerup"];
-        CCMenuItemImage * menuItem3 = [CCMenuItemFont itemWithString:@"Collect coins" ];
-        CCMenuItemImage * menuItem4 = [CCMenuItemFont itemWithString:@"Don't die" ];
-        CCMenuItemImage * menuItem5 = [CCMenuItemImage itemWithNormalImage:@"MainMenuButton.png"
+        CCMenuItemFont * menuItem1 = [CCMenuItemFont itemWithString:@"Pause"];
+        CCMenuItemImage * menuItem2 = [CCMenuItemImage itemWithNormalImage:@"MainMenuButton.png"
                                                              selectedImage: @"MainMenuButton.png"
                                                                     target:self
                                                                   selector:@selector(goToMainMenu:)];
-        instructionsMenu  = [CCMenu menuWithItems:menuItem1, menuItem2, menuItem3, menuItem4, menuItem5, nil];
-        [instructionsMenu alignItemsVertically];
-        [self addChild: instructionsMenu];
+        CCMenuItemImage * menuItem3 = [CCMenuItemImage itemWithNormalImage:@"resumeButton.png"
+                                                             selectedImage: @"resumeButton.png"
+                                                                    target:self
+                                                                  selector:@selector(resumeGame:)];
+        pauseMenu  = [CCMenu menuWithItems:menuItem1, menuItem2, menuItem3, nil];
+        [pauseMenu alignItemsVertically];
+        [self addChild: pauseMenu];
         
         //SCHEDULE UPDATE
         [self scheduleUpdate];
@@ -57,5 +57,11 @@ CCSprite * background;
 {
     [[CCDirector sharedDirector] replaceScene: [[Menu alloc] init]];
 }
+
+- (void) resumeGame: (CCMenuItem  *) menuItem
+{
+    [[CCDirector sharedDirector] popScene];
+}
+
 
 @end

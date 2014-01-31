@@ -12,11 +12,14 @@
 #import "SimpleAudioEngine.h"
 #import "Victory.h"
 #import "GameOver.h"
+#import "PauseScreen.h"
 
 
 
 //DEFINE OBJECTS
 CCSprite * background;
+CCMenu * pauseButton;
+
 CCSprite * ship;
 CCSprite * fire;
 CCSprite * coin;
@@ -54,6 +57,14 @@ int * coinCount;
 {
 	if ((self = [super init]))
 	{
+        //INITIALIZES PAUSE BUTTON
+        CCMenuItemImage * menuItem1 = [CCMenuItemImage itemWithNormalImage:@"PauseButton.png"
+                                                             selectedImage: @"PauseButton.png"
+                                                                    target:self
+                                                                  selector:@selector(goToPause:)];
+        pauseButton  = [CCMenu menuWithItems:menuItem1, nil];
+        pauseButton.position = ccp(20, 20); //Middle of the screen...
+        [self addChild: pauseButton z:2];
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
         int shipPositionX = winSize.width / 2;
@@ -99,6 +110,10 @@ int * coinCount;
         [self scheduleUpdate];
 	}
 	return self;
+}
+- (void) goToPause: (CCMenuItem  *) menuItem
+{
+    [[CCDirector sharedDirector] pushScene: [[PauseScreen alloc] init]];
 }
 
 -(void) createCoins
@@ -155,7 +170,7 @@ int * coinCount;
 -(void) createAsteroids
 {
     
-    int timer = arc4random() % 45000;//1 asteroid per 15 sec
+    int timer = arc4random() % 30000;//1 asteroid per 15 sec
     
     if (timer < 10)
         
@@ -334,7 +349,7 @@ int * coinCount;
                     [self removeChild:asteroidHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
-                    if (newScoreLevel2 > 25)
+                    if (newScoreLevel2 > 30)
                     {
                         [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
                     }
@@ -416,11 +431,11 @@ int * coinCount;
     
     if (self.powerUpActive == PowerUpActive_Level0)
     {
-        shipSpeed = 100;
+        shipSpeed = 100.0;
     }
     if (self.powerUpActive == PowerUpActive_Level1)
     {
-        shipSpeed = 200;
+        shipSpeed = 200.0;
     }
     
     

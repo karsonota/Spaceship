@@ -26,6 +26,9 @@
 		07F6F781189AF78900CB38EA /* fastForwardWaiting.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F780189AF78900CB38EA /* fastForwardWaiting.png */; };
 		07F6F785189AFE4900CB38EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F784189AFE4900CB38EA /* Default-568h@2x.png */; };
 		07F6F787189AFED700CB38EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F786189AFED700CB38EA /* Default.png */; };
+		07F6F790189C174200CB38EA /* PauseScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6F78F189C174200CB38EA /* PauseScreen.m */; };
+		07F6F794189C1C6300CB38EA /* PauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F793189C1C6300CB38EA /* PauseButton.png */; };
+		07F6F79A189C25D100CB38EA /* resumeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F6F799189C25D100CB38EA /* resumeButton.png */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -108,6 +111,10 @@
 		07F6F780189AF78900CB38EA /* fastForwardWaiting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastForwardWaiting.png; sourceTree = "<group>"; };
 		07F6F784189AFE4900CB38EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		07F6F786189AFED700CB38EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		07F6F78E189C174200CB38EA /* PauseScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseScreen.h; sourceTree = "<group>"; };
+		07F6F78F189C174200CB38EA /* PauseScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseScreen.m; sourceTree = "<group>"; };
+		07F6F793189C1C6300CB38EA /* PauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButton.png; sourceTree = "<group>"; };
+		07F6F799189C25D100CB38EA /* resumeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resumeButton.png; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -312,6 +319,8 @@
 				EF316707189B33870004F675 /* Menu.m */,
 				0717CC661889B763006A2648 /* infiniteMode.h */,
 				0717CC671889B776006A2648 /* infiniteMode.m */,
+				07F6F78E189C174200CB38EA /* PauseScreen.h */,
+				07F6F78F189C174200CB38EA /* PauseScreen.m */,
 				0717CC6B1890377B006A2648 /* Level1.h */,
 				0717CC6C1890377B006A2648 /* Level1.m */,
 				0717CC6E1890537D006A2648 /* Level2.h */,
@@ -338,6 +347,8 @@
 				EF31672C189B59340004F675 /* InstructionsButton.png */,
 				EF316719189B4F520004F675 /* InfiniteModeButton.png */,
 				EF31671A189B4F520004F675 /* Level1Button.png */,
+				07F6F793189C1C6300CB38EA /* PauseButton.png */,
+				07F6F799189C25D100CB38EA /* resumeButton.png */,
 				EF31671B189B4F520004F675 /* Level2Button.png */,
 				EF31671C189B4F520004F675 /* Level3Button.png */,
 				EF31671D189B4F520004F675 /* Level4Button.png */,
@@ -468,6 +479,7 @@
 				0717CC6A188D97D3006A2648 /* spaceBackground.png in Resources */,
 				0717CC65188867F6006A2648 /* burning_star_v1.plist in Resources */,
 				EF31672D189B59340004F675 /* InstructionsButton.png in Resources */,
+				07F6F794189C1C6300CB38EA /* PauseButton.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				07F6F77F189AEFD800CB38EA /* spaceBackground-ipadhd.png in Resources */,
 				07F6F7621899C7D200CB38EA /* DeathFlash.wav in Resources */,
@@ -476,6 +488,7 @@
 				079310031891A5B700EA1805 /* fastForward.png in Resources */,
 				07F6F781189AF78900CB38EA /* fastForwardWaiting.png in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
+				07F6F79A189C25D100CB38EA /* resumeButton.png in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
 				07F6F787189AFED700CB38EA /* Default.png in Resources */,
@@ -514,6 +527,7 @@
 				EF31672B189B57E10004F675 /* Instructions.m in Sources */,
 				0717CC6D1890377B006A2648 /* Level1.m in Sources */,
 				0717CC681889B776006A2648 /* infiniteMode.m in Sources */,
+				07F6F790189C174200CB38EA /* PauseScreen.m in Sources */,
 				0717CC7318905389006A2648 /* Level3.m in Sources */,
 				0717CC7618905396006A2648 /* Level4.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,

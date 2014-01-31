@@ -15,7 +15,7 @@
 {
     int newScore;
     int timerHelper;
-    int shipSpeed;
+    float shipSpeed;
     CCLabelTTF * scoreLabel;
     CCAction *spinningCoin;
     NSMutableArray* spinningFrames;

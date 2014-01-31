@@ -10,10 +10,11 @@
 @interface Level1 : CCLayer
 {
     int newScoreLevel1;
-    int shipSpeed;
+    float shipSpeed;
     CCLabelTTF * scoreLabel;
     CCAction *spinningCoin;
     NSMutableArray* spinningFrames;
+
     
 }
 

@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <math.h>
 #import "SimpleAudioEngine.h"
+#import "PauseScreen.h"
 
 #import "Victory.h"
 #import "GameOver.h"
@@ -17,6 +18,7 @@
 
 //DEFINE OBJECTS
 CCSprite * background;
+CCMenu * pauseButton;
 CCSprite * ship;
 CCSprite * fire;
 CCSprite * coin;
@@ -48,6 +50,15 @@ CCSprite * powerupHelper;
 {
 	if ((self = [super init]))
 	{
+        //INITIALIZES PAUSE BUTTON
+        CCMenuItemImage * menuItem1 = [CCMenuItemImage itemWithNormalImage:@"PauseButton.png"
+                                                             selectedImage: @"PauseButton.png"
+                                                                    target:self
+                                                                  selector:@selector(goToPause:)];
+        pauseButton  = [CCMenu menuWithItems:menuItem1, nil];
+        pauseButton.position = ccp(20, 20); //Middle of the screen...
+        [self addChild: pauseButton z:2];
+        
         //Dimensions
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
@@ -114,11 +125,15 @@ CCSprite * powerupHelper;
 	}
 	return self;
 }
+- (void) goToPause: (CCMenuItem  *) menuItem
+{
+    [[CCDirector sharedDirector] pushScene: [[PauseScreen alloc] init]];
+}
 
 -(void) createCoins
 {
     int timer = arc4random() % 1000;//makes coins appear randomly
-    if (coinCount < 100)
+    if (coinCount < 30)
     {
         if ([coins count] < 5)
         {
@@ -236,7 +251,7 @@ CCSprite * powerupHelper;
                     [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
 
                     
-                    if (newScoreLevel1 > 1)
+                    if (newScoreLevel1 > 20)
                     {
                         [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
                     }
@@ -299,11 +314,11 @@ CCSprite * powerupHelper;
     
     if (self.powerUpActive == PowerUpActive_Level0)
     {
-        shipSpeed = 100;
+        shipSpeed = 100.0;
     }
     if (self.powerUpActive == PowerUpActive_Level1)
     {
-        shipSpeed = 200;
+        shipSpeed = 200.0;
     }
     
     
