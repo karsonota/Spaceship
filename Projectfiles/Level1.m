@@ -11,6 +11,8 @@
 #include <math.h>
 #import "SimpleAudioEngine.h"
 
+#import "Victory.h"
+#import "GameOver.h"
 
 
 //DEFINE OBJECTS
@@ -233,6 +235,15 @@ CCSprite * powerupHelper;
                     [asteroids removeObjectAtIndex:first];
                     [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
 
+                    
+                    if (newScoreLevel1 > 1)
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+                    }
+                    else
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+                    }
                 }
             }
         }
@@ -314,6 +325,18 @@ CCSprite * powerupHelper;
             [ship runAction: [CCMoveTo actionWithDuration:distance/shipSpeed position:tap]];//makes ship move at a constant speed
         }
     }
+    if (coinCount == 50 && [coins count] == 0)
+    {
+        if (newScoreLevel1 > 25)
+        {
+            [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+        }
+        else
+        {
+            [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+        }
+    }
+    
     [self createCoins];
     [self createPowerups];
     [self detectCollisions];

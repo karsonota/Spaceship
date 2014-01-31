@@ -17,10 +17,11 @@ local config =
 	KKStartupConfig = 
 	{
 		-- load first scene from a class with this name, or from a Lua script with this name with .lua appended
-		FirstSceneClassName = "Level5",
+
+		FirstSceneClassName = "Menu",
 
 		MaxFrameRate = 60,
-		DisplayFPS = NO,
+		DisplayFPS = No,
 
 		EnableUserInteraction = YES,
 		EnableMultiTouch = YES,
