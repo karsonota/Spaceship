@@ -9,6 +9,8 @@
 #import "Level1.h"
 #include <stdlib.h>
 #include <math.h>
+#import "SimpleAudioEngine.h"
+
 #import "Victory.h"
 #import "GameOver.h"
 
@@ -18,7 +20,6 @@ CCSprite * background;
 CCSprite * ship;
 CCSprite * fire;
 CCSprite * coin;
-CCSprite * fastForward;
 CCSprite * asteroid;
 CCRepeatForever * spinCoin;
 NSMutableArray * coins;
@@ -34,6 +35,11 @@ CCSprite * fire1;
 CCSprite * fire2;
 int * coinCount;
 
+CCSprite * fastForward;
+CCSprite * fastForwardWaiting;
+NSMutableArray * powerups;
+CCSprite * powerupHelper;
+
 @interface Level1 (PrivateMethods)
 @end
 
@@ -45,7 +51,6 @@ int * coinCount;
         //Dimensions
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
         CGFloat screenHeight = screenRect.size.height;
@@ -54,6 +59,8 @@ int * coinCount;
         coins = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
         fires = [[NSMutableArray alloc] init];
+        powerups = [[NSMutableArray alloc] init];
+
         
         //CREATE BACKDROP
         background = [CCSprite spriteWithFile:@"spaceBackground.png"];
@@ -87,18 +94,20 @@ int * coinCount;
         fire2.position = ast2.position;
         [fires addObject:fire2];
         
-        //TEMPORARY MAKE POWERUP
-        fastForward = [CCSprite spriteWithFile:@"fastForward.png"];
-        fastForward.position = ccp(200, 200);
-        [self addChild:fastForward];
-        
         //KEEP TRACK OF SCORE
         newScoreLevel1 = 0;
         
+        //DEFINE POWERUP STATUS
+        self.powerUpWaiting = PowerUpWaiting_Level0;
+        self.powerUpActive = PowerUpActive_Level0;
+        
         //ADD THE SCORE LABEL
         scoreLabel = [CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(200,30) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:30];
-        scoreLabel.position = ccp(winSize.width - 110, winSize.height - 30); //Middle of the screen...
+        scoreLabel.position = ccp(winSize.width - 110, winSize.height - 30);
         [self addChild:scoreLabel z:1];
+        
+        //LOAD SOUND
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"DeathFlash.wav"];
         
         //SCHEDULE UPDATE
         [self scheduleUpdate];
@@ -109,7 +118,7 @@ int * coinCount;
 -(void) createCoins
 {
     int timer = arc4random() % 1000;//makes coins appear randomly
-    if (coinCount < 50)
+    if (coinCount < 100)
     {
         if ([coins count] < 5)
         {
@@ -148,7 +157,6 @@ int * coinCount;
             }
         }
     }
-    
 }
 
 -(void) removeOldCoins:(id)sender
@@ -156,6 +164,38 @@ int * coinCount;
     [self removeChild:sender cleanup:YES];
     [coins removeObjectIdenticalTo:sender];
 }
+
+
+-(void) createPowerups
+{
+    if ([powerups count] == 0 && self.powerUpWaiting == PowerUpWaiting_Level0)
+    {
+        //WHERE TO RANDOMLY PLACE THE POWERUPS
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        int screenWidth = screenRect.size.width;
+        int screenHeight = screenRect.size.height;
+        
+        int xPowerup = arc4random() % screenWidth;
+        int yPowerup = arc4random() % screenHeight;
+        
+        int timer = arc4random() % 100;
+        if (timer == 1)
+        {
+            fastForward = [CCSprite spriteWithFile:@"fastForward.png"];
+            fastForward.position = ccp(xPowerup, yPowerup);
+            [self addChild:fastForward];
+            [powerups addObject:fastForward];
+            [fastForward runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldPowerups:)], nil]];
+        }
+    }
+}
+
+-(void) removeOldPowerups:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
+    [powerups removeObjectIdenticalTo:sender];
+}
+
 
 
 -(void) detectCollisions
@@ -193,6 +233,8 @@ int * coinCount;
                     [self removeChild:fireHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+
                     
                     if (newScoreLevel1 > 1)
                     {
@@ -206,8 +248,30 @@ int * coinCount;
             }
         }
     }
-    
-    
+    for(int i = 0; i < [powerups count]; i++)
+    {
+        NSInteger first = i;
+        powerupHelper = [powerups objectAtIndex: first];
+        if (powerupHelper.position.x < (ship.position.x + 40) && powerupHelper.position.x > ship.position.x - 40)
+        {
+            if (powerupHelper.position.y < (ship.position.y + 60) && powerupHelper.position.y > ship.position.y - 80)
+            {
+                [self removeChild:powerupHelper cleanup:YES];
+                [powerups removeObjectAtIndex:first];
+                self.powerUpWaiting = PowerUpWaiting_Level1;
+                
+                fastForwardWaiting = [CCSprite spriteWithFile:@"fastForwardWaiting.png"];
+                fastForwardWaiting.position = ccp(scoreLabel.position.x + 100, scoreLabel.position.y - 25);
+                [self addChild:fastForwardWaiting];
+                
+                
+            }
+        }
+    }
+}
+
+- (void)resetPowerUp {
+    self.powerUpActive = PowerUpActive_Level0;
 }
 
 - (void)updateScore:(int)newScoreLevel1
@@ -217,24 +281,50 @@ int * coinCount;
 
 -(void) update:(ccTime)dt
 {
-    
-    //MAKES SHIP MOVE TO TAP LOCATION
-    KKInput * input = [KKInput sharedInput];
-    CGPoint tap = [input locationOfAnyTouchInPhase:KKTouchPhaseBegan];
-    ship.position = ccp( ship.position.x, ship.position.y);
-    if (tap.x != 0 && tap.y != 0)
+    CCArray* touches = [KKInput sharedInput].touches;
+    if ([touches count] > 1)
     {
-        [ship stopAllActions]; // Nullifies previous actions
-        int addedx = tap.x - ship.position.x;
-        int addedy = tap.y - ship.position.y;
-        int squaredx = pow(addedx, 2);
-        int squaredy = pow(addedy, 2);
-        int addedSquares = squaredx + squaredy;
-        int distance = pow(addedSquares, 0.5);
-        [ship runAction: [CCMoveTo actionWithDuration:distance/100 position:tap]];//makes ship move at a constant speed
+        if (self.powerUpWaiting == PowerUpWaiting_Level1)
+        {
+            self.powerUpWaiting = PowerUpWaiting_Level0;
+            self.powerUpActive = PowerUpActive_Level1;
+            [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
+            [self removeChild:fastForwardWaiting cleanup:YES];
+
+        }
         
     }
+
     
+    
+    if (self.powerUpActive == PowerUpActive_Level0)
+    {
+        shipSpeed = 100;
+    }
+    if (self.powerUpActive == PowerUpActive_Level1)
+    {
+        shipSpeed = 200;
+    }
+    
+    
+    
+    if ([touches count] == 1)
+    {
+        //MAKES SHIP MOVE TO TAP LOCATION
+        KKInput * input = [KKInput sharedInput];
+        CGPoint tap = [input locationOfAnyTouchInPhase:KKTouchPhaseBegan];
+        if (tap.x != 0 && tap.y != 0)
+        {
+            [ship stopAllActions]; // Nullifies previous actions
+            int addedx = tap.x - ship.position.x;
+            int addedy = tap.y - ship.position.y;
+            int squaredx = pow(addedx, 2);
+            int squaredy = pow(addedy, 2);
+            int addedSquares = squaredx + squaredy;
+            int distance = pow(addedSquares, 0.5);
+            [ship runAction: [CCMoveTo actionWithDuration:distance/shipSpeed position:tap]];//makes ship move at a constant speed
+        }
+    }
     if (coinCount == 50 && [coins count] == 0)
     {
         if (newScoreLevel1 > 25)
@@ -248,6 +338,7 @@ int * coinCount;
     }
     
     [self createCoins];
+    [self createPowerups];
     [self detectCollisions];
 }
 

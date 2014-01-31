@@ -17,29 +17,37 @@
 
 //DEFINE OBJECTS
 CCSprite * background;
+
 CCSprite * ship;
+
 CCSprite * fire;
-CCSprite * coin;
-CCSprite * asteroid;
-CCSprite * fastForward;
-CCRepeatForever * spinCoin;
-CCSprite * fastForwardWaiting;
-NSMutableArray * coins;
-NSMutableArray * asteroids;
-NSMutableArray * powerups;
-CCSprite * coinHelper;
-CCSprite * asteroidHelper;
-CCSprite * powerupHelper;
-CCSprite * ast1;
-CCSprite * ast2;
-CCSprite * ast3;
-CCSprite * ast4;
-CCSprite * ast5;
 CCSprite * fire1;
 CCSprite * fire2;
 CCSprite * fire3;
 CCSprite * fire4;
 CCSprite * fire5;
+NSMutableArray * fires;
+
+CCSprite * coin;
+CCRepeatForever * spinCoin;
+NSMutableArray * coins;
+CCSprite * coinHelper;
+
+CCSprite * fastForward;
+CCSprite * fastForwardWaiting;
+NSMutableArray * powerups;
+CCSprite * powerupHelper;
+
+CCSprite * asteroidHelper;
+CCSprite * ast1;
+CCSprite * ast2;
+CCSprite * ast3;
+CCSprite * ast4;
+CCSprite * ast5;
+CCSprite * asteroid;
+NSMutableArray * asteroids;
+
+
 
 @interface infiniteMode (PrivateMethods)
 @end
@@ -53,7 +61,6 @@ CCSprite * fire5;
 	if ((self = [super init]))
 	{
         
-        [self loadMyViewController];
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
         
@@ -65,7 +72,9 @@ CCSprite * fire5;
         //INITIALIZE THE ARRAY TO KEEP TRACK OF COINS AND ASTEROIDS
         coins = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
+        fires = [[NSMutableArray alloc] init];
         powerups = [[NSMutableArray alloc] init];
+        
         
         //CREATE BACKDROP
         background = [CCSprite spriteWithFile:@"spaceBackground.png"];
@@ -93,24 +102,13 @@ CCSprite * fire5;
         [self addChild:scoreLabel z:1];
         
         //LOAD SOUND
-        
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"DeathFlash.wav"];
-        
         
         //SCHEDULE UPDATE
         [self scheduleUpdate];
 	}
 	return self;
 }
-
-
-
--(void)loadMyViewController{
-    UIViewController  *myView = [[UIViewController alloc]init];
-    [[CCDirector sharedDirector] view];
-}
-
-
 
 
 -(void) createCoins
@@ -160,7 +158,6 @@ CCSprite * fire5;
 {
     
     int timer = arc4random() % timerHelper;//makes coins appear randomly
-    
     if (timer < 10)
         
     {
@@ -235,6 +232,12 @@ CCSprite * fire5;
     }
 }
 
+-(void) removeOldAsteroids:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
+    [coins removeObjectIdenticalTo:sender];
+}
+
 -(void) createPowerups
 {
     if ([powerups count] == 0 && self.powerUpWaiting == PowerUpWaiting_Level0)
@@ -257,7 +260,6 @@ CCSprite * fire5;
             [fastForward runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5], [CCCallFuncN actionWithTarget:self selector:@selector(removeOldPowerups:)], nil]];
         }
     }
-    
 }
 
 -(void) removeOldPowerups:(id)sender
@@ -364,27 +366,10 @@ CCSprite * fire5;
             self.powerUpWaiting = PowerUpWaiting_Level0;
             self.powerUpActive = PowerUpActive_Level1;
             [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
-        }
-        
-    }
-    
-    
-    if (self.powerUpActive == PowerUpActive_Level0)
-    {
-        shipSpeed = 100;
-    }
-    if (self.powerUpActive == PowerUpActive_Level1)
-    {
-        if (self.powerUpWaiting == PowerUpWaiting_Level1)
-        {
-            self.powerUpWaiting = PowerUpWaiting_Level0;
-            self.powerUpActive = PowerUpActive_Level1;
-            [self performSelector:@selector(resetPowerUp) withObject:nil afterDelay:5.0f];
             [self removeChild:fastForwardWaiting cleanup:YES];
 
         }
     }
-    
     
     if (self.powerUpActive == PowerUpActive_Level0)
     {
