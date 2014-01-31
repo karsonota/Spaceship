@@ -63,6 +63,20 @@
 		DCC1A3B013A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
 		DCF95CD213A97EC500AE3B80 /* libcocos2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CC913A97EC500AE3B80 /* libcocos2d-mac.a */; };
 		DCF95CD413A97EC500AE3B80 /* libkobold2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */; };
+		EF316708189B33870004F675 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = EF316707189B33870004F675 /* Menu.m */; };
+		EF31670A189B36F30004F675 /* IconWide_Off.bmp in Resources */ = {isa = PBXBuildFile; fileRef = EF316709189B36F30004F675 /* IconWide_Off.bmp */; };
+		EF31670D189B3C120004F675 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = EF31670C189B3C120004F675 /* GameOver.m */; };
+		EF316713189B446E0004F675 /* LevelSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = EF316712189B446E0004F675 /* LevelSelect.m */; };
+		EF316716189B460F0004F675 /* Victory.m in Sources */ = {isa = PBXBuildFile; fileRef = EF316715189B460F0004F675 /* Victory.m */; };
+		EF316718189B4CA00004F675 /* Level1Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF316717189B4CA00004F675 /* Level1Button.png */; };
+		EF316721189B4F520004F675 /* InfiniteModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EF316719189B4F520004F675 /* InfiniteModeButton.png */; };
+		EF316722189B4F520004F675 /* Level1Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671A189B4F520004F675 /* Level1Button.png */; };
+		EF316723189B4F520004F675 /* Level2Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671B189B4F520004F675 /* Level2Button.png */; };
+		EF316724189B4F520004F675 /* Level3Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671C189B4F520004F675 /* Level3Button.png */; };
+		EF316725189B4F520004F675 /* Level4Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671D189B4F520004F675 /* Level4Button.png */; };
+		EF316726189B4F520004F675 /* Level5Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671E189B4F520004F675 /* Level5Button.png */; };
+		EF316727189B4F520004F675 /* LevelModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671F189B4F520004F675 /* LevelModeButton.png */; };
+		EF316728189B4F520004F675 /* MainMenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EF316720189B4F520004F675 /* MainMenuButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +153,24 @@
 		DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libkobold2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
+		EF316706189B33870004F675 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		EF316707189B33870004F675 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		EF316709189B36F30004F675 /* IconWide_Off.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = IconWide_Off.bmp; sourceTree = "<group>"; };
+		EF31670B189B3C120004F675 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
+		EF31670C189B3C120004F675 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
+		EF316711189B446E0004F675 /* LevelSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelect.h; sourceTree = "<group>"; };
+		EF316712189B446E0004F675 /* LevelSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelect.m; sourceTree = "<group>"; };
+		EF316714189B460F0004F675 /* Victory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Victory.h; sourceTree = "<group>"; };
+		EF316715189B460F0004F675 /* Victory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Victory.m; sourceTree = "<group>"; };
+		EF316717189B4CA00004F675 /* Level1Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Button.png; sourceTree = "<group>"; };
+		EF316719189B4F520004F675 /* InfiniteModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfiniteModeButton.png; sourceTree = "<group>"; };
+		EF31671A189B4F520004F675 /* Level1Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Button.png; sourceTree = "<group>"; };
+		EF31671B189B4F520004F675 /* Level2Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2Button.png; sourceTree = "<group>"; };
+		EF31671C189B4F520004F675 /* Level3Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level3Button.png; sourceTree = "<group>"; };
+		EF31671D189B4F520004F675 /* Level4Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level4Button.png; sourceTree = "<group>"; };
+		EF31671E189B4F520004F675 /* Level5Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level5Button.png; sourceTree = "<group>"; };
+		EF31671F189B4F520004F675 /* LevelModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelModeButton.png; sourceTree = "<group>"; };
+		EF316720189B4F520004F675 /* MainMenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainMenuButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +295,14 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				EF316714189B460F0004F675 /* Victory.h */,
+				EF316715189B460F0004F675 /* Victory.m */,
+				EF316711189B446E0004F675 /* LevelSelect.h */,
+				EF316712189B446E0004F675 /* LevelSelect.m */,
+				EF31670B189B3C120004F675 /* GameOver.h */,
+				EF31670C189B3C120004F675 /* GameOver.m */,
+				EF316706189B33870004F675 /* Menu.h */,
+				EF316707189B33870004F675 /* Menu.m */,
 				0717CC661889B763006A2648 /* infiniteMode.h */,
 				0717CC671889B776006A2648 /* infiniteMode.m */,
 				0717CC6B1890377B006A2648 /* Level1.h */,
@@ -288,6 +328,16 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF316719189B4F520004F675 /* InfiniteModeButton.png */,
+				EF31671A189B4F520004F675 /* Level1Button.png */,
+				EF31671B189B4F520004F675 /* Level2Button.png */,
+				EF31671C189B4F520004F675 /* Level3Button.png */,
+				EF31671D189B4F520004F675 /* Level4Button.png */,
+				EF31671E189B4F520004F675 /* Level5Button.png */,
+				EF31671F189B4F520004F675 /* LevelModeButton.png */,
+				EF316720189B4F520004F675 /* MainMenuButton.png */,
+				EF316717189B4CA00004F675 /* Level1Button.png */,
+				EF316709189B36F30004F675 /* IconWide_Off.bmp */,
 				07A4F3B418847591002276D8 /* spinningCoin.plist */,
 				0717CC69188D97D3006A2648 /* spaceBackground.png */,
 				07F6F77E189AEFD800CB38EA /* spaceBackground-ipadhd.png */,
@@ -396,8 +446,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0756313718871BDD0070C5A9 /* asteroid1.png in Resources */,
+				EF316726189B4F520004F675 /* Level5Button.png in Resources */,
+				EF31670A189B36F30004F675 /* IconWide_Off.bmp in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
+				EF316722189B4F520004F675 /* Level1Button.png in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
+				EF316723189B4F520004F675 /* Level2Button.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
 				07F6F785189AFE4900CB38EA /* Default-568h@2x.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
@@ -408,6 +462,8 @@
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				07F6F77F189AEFD800CB38EA /* spaceBackground-ipadhd.png in Resources */,
 				07F6F7621899C7D200CB38EA /* DeathFlash.wav in Resources */,
+				EF316721189B4F520004F675 /* InfiniteModeButton.png in Resources */,
+				EF316725189B4F520004F675 /* Level4Button.png in Resources */,
 				079310031891A5B700EA1805 /* fastForward.png in Resources */,
 				07F6F781189AF78900CB38EA /* fastForwardWaiting.png in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
@@ -416,8 +472,12 @@
 				07F6F787189AFED700CB38EA /* Default.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
 				07F6F76F189A07D800CB38EA /* blackship.png in Resources */,
+				EF316718189B4CA00004F675 /* Level1Button.png in Resources */,
 				07A4F3B318847587002276D8 /* spinningCoin.png in Resources */,
 				07A4F3B518847591002276D8 /* spinningCoin.plist in Resources */,
+				EF316728189B4F520004F675 /* MainMenuButton.png in Resources */,
+				EF316724189B4F520004F675 /* Level3Button.png in Resources */,
+				EF316727189B4F520004F675 /* LevelModeButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,15 +500,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF316708189B33870004F675 /* Menu.m in Sources */,
 				0717CC79189053A5006A2648 /* Level5.m in Sources */,
 				0717CC6D1890377B006A2648 /* Level1.m in Sources */,
 				0717CC681889B776006A2648 /* infiniteMode.m in Sources */,
 				0717CC7318905389006A2648 /* Level3.m in Sources */,
 				0717CC7618905396006A2648 /* Level4.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
+				EF316716189B460F0004F675 /* Victory.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
+				EF316713189B446E0004F675 /* LevelSelect.m in Sources */,
 				0717CC701890537D006A2648 /* Level2.m in Sources */,
 				079310011891A42D00EA1805 /* Tutorial.m in Sources */,
+				EF31670D189B3C120004F675 /* GameOver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

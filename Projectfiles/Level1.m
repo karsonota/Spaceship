@@ -9,6 +9,8 @@
 #import "Level1.h"
 #include <stdlib.h>
 #include <math.h>
+#import "Victory.h"
+#import "GameOver.h"
 
 
 //DEFINE OBJECTS
@@ -191,6 +193,15 @@ int * coinCount;
                     [self removeChild:fireHelper cleanup:YES];
                     [self removeChild:ship cleanup:YES];
                     [asteroids removeObjectAtIndex:first];
+                    
+                    if (newScoreLevel1 > 1)
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+                    }
+                    else
+                    {
+                        [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+                    }
                 }
             }
         }
@@ -222,6 +233,18 @@ int * coinCount;
         int distance = pow(addedSquares, 0.5);
         [ship runAction: [CCMoveTo actionWithDuration:distance/100 position:tap]];//makes ship move at a constant speed
         
+    }
+    
+    if (coinCount == 50 && [coins count] == 0)
+    {
+        if (newScoreLevel1 > 25)
+        {
+            [[CCDirector sharedDirector] replaceScene: [[Victory alloc] init]];
+        }
+        else
+        {
+            [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
+        }
     }
     
     [self createCoins];

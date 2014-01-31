@@ -6,6 +6,7 @@
  */
 
 #import "infiniteMode.h"
+#import "GameOver.h"
 #include <stdlib.h>
 #include <math.h>
 #import "SimpleAudioEngine.h"
@@ -316,6 +317,7 @@ CCSprite * fire5;
                     [asteroids removeObjectAtIndex:first];
                     
                     [[SimpleAudioEngine sharedEngine] playEffect:@"DeathFlash.wav"];
+                    [[CCDirector sharedDirector] replaceScene: [[GameOver alloc] init]];
                     
                 }
             }

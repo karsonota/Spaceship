@@ -10,6 +10,7 @@
 
 
 
+
 @interface infiniteMode : CCLayer
 {
     int newScore;
