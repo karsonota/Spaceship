@@ -77,6 +77,8 @@
 		EF316726189B4F520004F675 /* Level5Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671E189B4F520004F675 /* Level5Button.png */; };
 		EF316727189B4F520004F675 /* LevelModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31671F189B4F520004F675 /* LevelModeButton.png */; };
 		EF316728189B4F520004F675 /* MainMenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EF316720189B4F520004F675 /* MainMenuButton.png */; };
+		EF31672B189B57E10004F675 /* Instructions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF31672A189B57E10004F675 /* Instructions.m */; };
+		EF31672D189B59340004F675 /* InstructionsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EF31672C189B59340004F675 /* InstructionsButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +173,9 @@
 		EF31671E189B4F520004F675 /* Level5Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level5Button.png; sourceTree = "<group>"; };
 		EF31671F189B4F520004F675 /* LevelModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelModeButton.png; sourceTree = "<group>"; };
 		EF316720189B4F520004F675 /* MainMenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainMenuButton.png; sourceTree = "<group>"; };
+		EF316729189B57E10004F675 /* Instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instructions.h; sourceTree = "<group>"; };
+		EF31672A189B57E10004F675 /* Instructions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instructions.m; sourceTree = "<group>"; };
+		EF31672C189B59340004F675 /* InstructionsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InstructionsButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +300,8 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				EF316729189B57E10004F675 /* Instructions.h */,
+				EF31672A189B57E10004F675 /* Instructions.m */,
 				EF316714189B460F0004F675 /* Victory.h */,
 				EF316715189B460F0004F675 /* Victory.m */,
 				EF316711189B446E0004F675 /* LevelSelect.h */,
@@ -328,6 +335,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF31672C189B59340004F675 /* InstructionsButton.png */,
 				EF316719189B4F520004F675 /* InfiniteModeButton.png */,
 				EF31671A189B4F520004F675 /* Level1Button.png */,
 				EF31671B189B4F520004F675 /* Level2Button.png */,
@@ -459,6 +467,7 @@
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				0717CC6A188D97D3006A2648 /* spaceBackground.png in Resources */,
 				0717CC65188867F6006A2648 /* burning_star_v1.plist in Resources */,
+				EF31672D189B59340004F675 /* InstructionsButton.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				07F6F77F189AEFD800CB38EA /* spaceBackground-ipadhd.png in Resources */,
 				07F6F7621899C7D200CB38EA /* DeathFlash.wav in Resources */,
@@ -502,6 +511,7 @@
 			files = (
 				EF316708189B33870004F675 /* Menu.m in Sources */,
 				0717CC79189053A5006A2648 /* Level5.m in Sources */,
+				EF31672B189B57E10004F675 /* Instructions.m in Sources */,
 				0717CC6D1890377B006A2648 /* Level1.m in Sources */,
 				0717CC681889B776006A2648 /* infiniteMode.m in Sources */,
 				0717CC7318905389006A2648 /* Level3.m in Sources */,
